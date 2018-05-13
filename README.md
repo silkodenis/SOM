@@ -1,4 +1,4 @@
-# SOM
+# Self-Organizing Map (SOM)
 
 ## License
 
