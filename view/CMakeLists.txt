@@ -20,9 +20,24 @@ endif()
 
 if(BUILD_SHARED_LIBS)
 add_library(som_view SHARED ${SOURCE_LIB} ${HEADERS_LIB})
-else()
-add_library(som_view STATIC ${SOURCE_LIB} ${HEADERS_LIB})
-endif()
-
 target_link_libraries(som_view som)
 target_link_libraries(som_view ${OpenCV_LIBS})
+
+set_target_properties(som_view PROPERTIES PUBLIC_HEADER "${HEADERS_LIB}")
+install(TARGETS som_view 
+        LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/som_view
+        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/som_view
+)
+
+else()
+add_library(som_view STATIC ${SOURCE_LIB} ${HEADERS_LIB})
+target_link_libraries(som_view som)
+target_link_libraries(som_view ${OpenCV_LIBS})
+
+set_target_properties(som_view PROPERTIES PUBLIC_HEADER "${HEADERS_LIB}")
+install(TARGETS som_view 
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/som_view
+        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/som_view
+)
+
+endif()
