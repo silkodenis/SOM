@@ -45,6 +45,14 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 6. $ cmake -D BUILD_SHARED_LIBS=true -D CMAKE_INSTALL_PREFIX=/usr/local ../
 ```
 
+## Examples
+
+![](https://www.dropbox.com/pri/get/Dillinger/_images/som_train.gif?_subject_uid=256524193&raw=1&size=2048x1536&size_mode=3&w=AAAXh34GJd2gXwiEyk2YpJZIop8FuG3Moq50xexqiO5MxQ)
+
+
+## Authors
+
+* **Denis Silko** - *Initial work* - [silkodenis](https://github.com/silkodenis)
 
 ## License
 
