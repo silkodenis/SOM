@@ -5,6 +5,7 @@ project(som)
 find_package(OpenCV REQUIRED)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_MACOSX_RPATH 1)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(../som/include/public)
@@ -16,7 +17,12 @@ if(NOT CMAKE_GENERATOR STREQUAL Xcode)
 	file(COPY ${HEADERS_LIB} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/include)
 endif()
 
+
+if(BUILD_SHARED_LIBS)
+add_library(som_view SHARED ${SOURCE_LIB} ${HEADERS_LIB})
+else()
 add_library(som_view STATIC ${SOURCE_LIB} ${HEADERS_LIB})
+endif()
 
 target_link_libraries(som_view som)
 target_link_libraries(som_view ${OpenCV_LIBS})
