@@ -34,7 +34,7 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 8. $ sudo make install
 ```
 
-### Notes
+#### Notes
 ```sh
 ## to generate XCode project use:
 6. $ cmake -G Xcode ../
