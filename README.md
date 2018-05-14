@@ -7,7 +7,7 @@ Required Packages:
 
 Required Dependencies:
 * `OpenCL 1.1 ` or higher 
-* `OpenCV 3` [optional] (for build view and examples)
+* `OpenCV 3` [optional] (for build lib som_view and examples)
 
 These steps have been tested for macOS High Sierra 10.13.14 but should work with other unix systems as well.
 
