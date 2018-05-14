@@ -1,5 +1,7 @@
 # Self-Organizing Map (SOM)
 
+Fast, convenient and complete SOM C++ library using parallel computing based on OpenCL. The map has a hexagonal grid, which allows you to get the correct model view. All this makes it possible to use the library for scientific works.
+
 ## Installation in Unix
 Required Packages:
 * `CMake 2.8` or higher
