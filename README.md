@@ -6,7 +6,7 @@ Required Packages:
 * `Git`
 
 Required Dependencies:
-* `OpenCL 1.2 ` or higher 
+* `OpenCL 1.1 ` or higher 
 * `OpenCV 3` [optional] (for build lib som_view and examples)
 
 These steps have been tested for macOS High Sierra 10.13.14 but should work with other unix systems as well.
@@ -32,7 +32,7 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 8. $ sudo make install
 ```
 
-### Installation notes
+### Notes
 ```sh
 ## to generate XCode project use:
 6. $ cmake -G Xcode ../
