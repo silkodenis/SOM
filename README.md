@@ -109,6 +109,26 @@ A simple example of analyzing the channels of a trained map.
 
 This example demonstrates various interpretations model view of a trained map using the additional library som_view.
 
+<p align="center">
+  <img width="854" height="490" src="https://lh3.googleusercontent.com/31cQb6SXFv3B7pTwu6cEQKFzbaMeNGlq4_hWZ-oJCxjqme5mjOs7yGTtQK5YbZsJISPTY2p7wXQ9Sg=w2880-h1632">
+</p>
+
+<p align="center">
+  <img width="854" height="490" src="https://lh5.googleusercontent.com/CszeKvdmXS3tUnnZUd2tVRzbnDsnnofqoKeHZOrC44EpXCtLkHEsVbLRQcWQXaet8tTGsGksm0Ouaw=w2880-h1632">
+</p>
+
+<p align="center">
+  <img width="854" height="490" src="https://lh6.googleusercontent.com/imUUfF_u5yCeSLZJcw231XSGwzO0cB4iA6JPAl_EY9QFoKwSNToSPD4_LDlN1H2YHJb8b0D2hH3jMQ=w2880-h1632">
+</p>
+
+<p align="center">
+  <img width="854" height="490" src="https://lh6.googleusercontent.com/EZhfN-lJEj9khQSIiJ6ZIKXGu2aLaZT2CRNOwVCfuiXfNAv3ae0JGAVw8DbtdKpbQ-9T3orGrd9QuQ=w2880-h1632">
+</p>
+
+<p align="center">
+  <img width="639" height="2082" src="https://lh3.googleusercontent.com/MltSQAtD3KDU1idNFdXtsql0PIMr6wmzFVZRnaHDsonAXZ1ZHHi5XX8GEWdUzQLUArTBWRIhFGjchw=w2880-h1632">
+</p>
+
 **Save and load**
 
 A simple demonstration of saving and loading your models from a binary file.
