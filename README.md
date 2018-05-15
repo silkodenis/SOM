@@ -62,6 +62,10 @@ Hello world!
 
 A simple example of how to train SOM and get a model view in real time.
 
+<p align="center">
+  <img width="558" height="639" src="https://lh4.googleusercontent.com/qDj2GZCiKxUxX5sbzq9_tsiIdeuRQ-z6eMTkxAFWFPWacEpLZI-1F2rF1mz-o31N3h1F8gUSNtSXqQ=w2880-h1632">
+</p>
+
 **Regression**
 
 A simple example of using SOM for regression analysis.
