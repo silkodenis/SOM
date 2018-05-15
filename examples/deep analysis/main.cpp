@@ -27,7 +27,7 @@ static const string CHANNELS_MAP_WINDOW_NAME = "Channels";
 extern vector<vector<cl_float>> createRandomDataSet(const size_t channels,
                                                     const size_t labels,
                                                     uniform_real_distribution<cl_float> noiseRange);
-extern void drawSingleChannelMaps(const SOM &som);
+extern Mat drawSingleChannelMaps(const SOM &som);
 
 int main(int argc, const char * argv[]) {
     
@@ -50,7 +50,11 @@ int main(int argc, const char * argv[]) {
     som.train(iterationsCount, learningRate, EUCLIDEAN);
 
     // Draw single channel maps
-    drawSingleChannelMaps(som);
+    Mat allChannels = drawSingleChannelMaps(som);
+    
+    namedWindow(CHANNELS_MAP_WINDOW_NAME);
+    moveWindow(CHANNELS_MAP_WINDOW_NAME, 20, 20);
+    imshow(CHANNELS_MAP_WINDOW_NAME, allChannels);
     
     // Aproximation maps
     Mat allMapsMat;
@@ -144,7 +148,7 @@ vector<vector<cl_float>> createRandomDataSet(const size_t channels, const size_t
     return data;
 }
 
-void drawSingleChannelMaps(const SOM &som) {
+Mat drawSingleChannelMaps(const SOM &som) {
     const auto channels = som.getNodeDimensionality();
     
     vector<vector<Mat>> allMaps_v;
@@ -210,7 +214,5 @@ void drawSingleChannelMaps(const SOM &som) {
     
     vconcat(v_concat, allChannels);
     
-    namedWindow(CHANNELS_MAP_WINDOW_NAME);
-    moveWindow(CHANNELS_MAP_WINDOW_NAME, 20, 20);
-    imshow(CHANNELS_MAP_WINDOW_NAME, allChannels);
+    return allChannels;
 }

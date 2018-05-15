@@ -1,6 +1,6 @@
 # Self-Organizing Map (SOM)
 
-Fast, convenient and complete SOM C++ library using parallel computing based on OpenCL. The map has a hexagonal grid, which allows you to get the correct model view. All this makes it possible to use the library for scientific works.
+Fast, convenient and complete C++ library using parallel computing based on OpenCL. The map has a hexagonal cells, which allows you to get the correct model view. All this makes it possible to use the library for high-level scientific works.
 
 ## Installation in Unix
 Required Packages:
@@ -41,13 +41,32 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 ```
 
 ```sh
-## to build dynamic libraries, use option: [-D BUILD_SHARED_LIBS=true], for example:
+## to build dynamic libs, use option: [-D BUILD_SHARED_LIBS=true], for example:
 6. $ cmake -D BUILD_SHARED_LIBS=true -D CMAKE_INSTALL_PREFIX=/usr/local ../
 ```
 
 ## Examples
 
-![](https://www.dropbox.com/pri/get/Dillinger/_images/som_train.gif?_subject_uid=256524193&raw=1&size=2048x1536&size_mode=3&w=AAAXh34GJd2gXwiEyk2YpJZIop8FuG3Moq50xexqiO5MxQ)
+**Simple training**
+Hello world!
+
+**Real-time training**
+A simple example of how to train SOM and get a model view in real time.
+
+**Regression**
+A simple example of using SOM for regression analysis.
+
+**Image as dataset**
+An example of using an image as a data set. After receiving the clustered map from one image, we apply it to clustering another image.
+
+**Single channel analysis**
+A simple example of analyzing the channels of a trained map. 
+
+**Deep analysis**
+This example demonstrates various interpretations model view of a trained map using the additional library som_view.
+
+**Save and load**
+A simple demonstration of saving and loading your models from a binary file.
 
 
 ## Authors
