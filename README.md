@@ -46,6 +46,7 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 ```
 
 ## Examples
+Here is a brief overview of the examples, the source code of which is attached.
 
 **Simple training**
 Hello world!

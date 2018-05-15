@@ -26,14 +26,14 @@ HexagonGrid::HexagonGrid(const size_t radius, const double hexSize) : Grid(FLAT_
     topologicalDimensionality_ = 2;
 
     double hexWidth = hexSize_ * 2;
-    double hexHeight = sqrt(3)/2 * hexWidth;
-    double horizontalDistance = hexWidth * 3./4.;
+    double hexHeight = sqrt(3.)/2. * hexWidth;
+    double horizontalDistance = hexWidth * (3./4.);
     double verticalDistance = hexHeight;
 
     size_.width = radius * 2 * horizontalDistance + hexWidth + offset_.horizontal * 2;
     size_.height = radius * 2 * hexHeight + verticalDistance + offset_.vertical * 2;
     
-    som::Point origin(size_.width/2, size_.height/2);
+    Point origin(size_.width/2, size_.height/2);
     Layout layout(orientation_, origin, hexSize_);
     
     vector<Hex> hexagons;
