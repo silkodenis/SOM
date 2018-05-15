@@ -126,13 +126,16 @@ This example demonstrates various interpretations model view of a trained map us
 </p>
 
 <p align="center">
-  <img width="639" height="2082" src="https://lh3.googleusercontent.com/MltSQAtD3KDU1idNFdXtsql0PIMr6wmzFVZRnaHDsonAXZ1ZHHi5XX8GEWdUzQLUArTBWRIhFGjchw=w2880-h1632">
+  <img width="511" height="1666" src="https://lh3.googleusercontent.com/MltSQAtD3KDU1idNFdXtsql0PIMr6wmzFVZRnaHDsonAXZ1ZHHi5XX8GEWdUzQLUArTBWRIhFGjchw=w2880-h1632">
 </p>
 
 **Save and load**
 
 A simple demonstration of saving and loading your models from a binary file.
 
+<p align="center">
+  <img width="732" height="633" src="https://lh4.googleusercontent.com/i75sj60N-wCx5fPi4YMWOxWsZybURF_Irhcxa__w2ZMTnRH7c-T9lh-g6ycrbU5zvjkfMCVwSfGhlQ=w2880-h1632">
+</p>
 
 ## Authors
 
