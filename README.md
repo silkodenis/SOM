@@ -78,6 +78,20 @@ A simple example of using SOM for regression analysis.
 
 An example of using an image as a data set. After receiving the clustered map from one image, we apply it to clustering another image.
 
+<p align="center">
+  <img width="800" height="531" src="https://lh4.googleusercontent.com/I7oIwqGjYEZiWcjXZZDgybv7zfUHa-MKuwnt3r4HzL1tjzkqMOVvzGSr6rU-7xm9YasTqmyjY4EDUA=w2880-h1632">
+</p>
+
+<p align="center">
+  <img width="363" height="347" src="https://lh6.googleusercontent.com/X5bNs7wKpGhQR--qfJLynty1fuPoERFAwsFvmjDxnljV9l89vSUnJRNWRYL6JM2BONh8TK9vwpsEfA=w2880-h1632">
+  
+  <img width="405" height="350" src="https://lh5.googleusercontent.com/lv5bT8DbV_6pUabje_UY3AtfZKB7VddKWGjLZ6IjME5ib4Nae8_BGvEd53WGQ_jIC9oTHfkfO4dq2A=w2880-h1632">
+</p>
+
+<p align="center">
+  <img width="800" height="531" src="https://lh3.googleusercontent.com/NV-uSp1Qc0R2E4qssw0UFu1_7jq3mnVdRfTh739LGgmPMDs6zP8R_1JTqewTagQLAg1Z9fydPYKmfw=w2880-h1632">
+</p>
+
 **Single channel analysis**
 
 A simple example of analyzing the channels of a trained map. 
