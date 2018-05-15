@@ -52,6 +52,12 @@ Here is a brief overview of the examples, the source code of which is attached.
 
 Hello world!
 
+<p align="center">
+  <img width="420" height="362" src="https://lh4.googleusercontent.com/wb7b6N4zqf7O6jjPipgK5ucnE46rUOfNaPudxQMVil7zks6aAk_edSl6E9Y0c3UQz3Qtm9Hz9WgGYA=w2880-h1632">
+  
+  <img width="420" height="362" src="https://lh5.googleusercontent.com/df0Ubus2j91SGYn2_Aom2E95jD8rt8hO7gZsT7WXX6jcDfKuiT9k4Ulto8NwBStAuFLHl_4Zd2faMQ=w2880-h1632">
+</p>
+
 **Real-time training**
 
 A simple example of how to train SOM and get a model view in real time.
