@@ -96,6 +96,15 @@ An example of using an image as a data set. After receiving the clustered map fr
 
 A simple example of analyzing the channels of a trained map. 
 
+<p align="center">
+  <img width="435" height="376" src="https://lh5.googleusercontent.com/T_JvuqmKMOYPNOy1_B2TgHjYZNxCh5fFXkso3MsbDDHSNagEYSYVi3NzntdV4bHaPDV25ymxsbCHgw=w2880-h1632">
+</p>
+
+<p align="center">
+  <img width="783" height="451" src="https://lh3.googleusercontent.com/_3eCDQEF13slSxcHLbIe4Sfrjn_dINqvfr9qagDDrByhto00vz7E4w0pcMg23H_LYDfE1qtTkdlh-w=w2880-h1632">
+</p>
+
+
 **Deep analysis**
 
 This example demonstrates various interpretations model view of a trained map using the additional library som_view.
