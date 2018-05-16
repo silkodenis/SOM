@@ -17,7 +17,7 @@ using namespace cv;
 using namespace som;
 using namespace std;
 
-static const string CURRENT_MAP_WINDOW_NAME = "current map";
+static const string TRAINING_PROCESS_WINDOW_NAME = "training process";
 static const string UNTRAINED_MAP_WINDOW_NAME = "untrained map";
 
 int main(int argc, const char * argv[]) {
@@ -51,10 +51,10 @@ int main(int argc, const char * argv[]) {
 
     som.train(iterationsCount, learningRate, metric, manual);
     
-    namedWindow(CURRENT_MAP_WINDOW_NAME); moveWindow(CURRENT_MAP_WINDOW_NAME, 700, 100);
+    namedWindow(TRAINING_PROCESS_WINDOW_NAME); moveWindow(TRAINING_PROCESS_WINDOW_NAME, 700, 100);
     
     while (!som.epochs(5)) {
-        imshow(CURRENT_MAP_WINDOW_NAME, draw3DMap(som, true));
+        imshow(TRAINING_PROCESS_WINDOW_NAME, draw3DMap(som));
         waitKey(1);
     }
     

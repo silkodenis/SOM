@@ -1,6 +1,6 @@
 # Self-Organizing Map (SOM)
 
-Fast, convenient and complete C++ library using parallel computing based on OpenCL. The map has a hexagonal cells, which allows you to get the correct model view. All this makes it possible to use the library for high-level scientific works.
+Fast, convenient and most complete C++ library using parallel computing based on OpenCL. The map has a hexagonal cells, which allows you to get the correct model view. All this makes it possible to use the library for high-level scientific works.
 
 ## Installation in Unix
 Required Packages:

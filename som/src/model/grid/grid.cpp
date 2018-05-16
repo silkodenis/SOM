@@ -16,8 +16,8 @@ using namespace std;
 using namespace som;
 
 namespace som {
-    static const size_t DEFAULT_VERTICAL_OFFSET = 0;
-    static const size_t DEFAULT_HORIZONTAL_OFFSET = 0;
+    static const size_t DEFAULT_VERTICAL_OFFSET = 5;
+    static const size_t DEFAULT_HORIZONTAL_OFFSET = 5;
 }
 
 Grid::Grid(const Orientation orientation, const double hexSize) :

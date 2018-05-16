@@ -34,12 +34,12 @@ int main(int argc, const char * argv[]) {
     
     vector<vector<float>> data{red, green, blue, yellow, orange, purple, dk_green, dk_blue};
 
-    const auto cols = 40;
-    const auto rows = 40;
-    const auto hexSize = 18;
+    const auto cols = 15;
+    const auto rows = 15;
+    const auto hexSize = 30;
     const auto channels = 3;
-    const auto learningRate = 0.1;
-    const auto iterationsCount = 10000;
+    const auto learningRate = 0.2;
+    const auto iterationsCount = 2000;
     
     SOM som(CPU);
     som.create(cols, rows, hexSize, channels);

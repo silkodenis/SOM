@@ -32,9 +32,9 @@ extern Mat drawSingleChannelMaps(const SOM &som);
 int main(int argc, const char * argv[]) {
     
     // Create random data set
-    const size_t channels = 100;
+    const size_t channels = 30;
     const size_t labels = 30;
-    const uniform_real_distribution<cl_float> noiseRange(-0.3, 0.3);
+    const uniform_real_distribution<cl_float> noiseRange(-0.1, 0.1);
 
     vector<vector<cl_float>> data = createRandomDataSet(channels, labels, noiseRange);
 

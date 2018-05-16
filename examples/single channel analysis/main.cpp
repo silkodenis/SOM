@@ -34,9 +34,9 @@ int main(int argc, const char * argv[]) {
     
     vector<vector<float>> data{red, green, blue, yellow, orange, purple, dk_green, dk_blue};
     
-    const auto cols = 100;
-    const auto rows = 100;
-    const auto hexSize = 5;
+    const auto cols = 105;
+    const auto rows = 105;
+    const auto hexSize = 3;
     const auto channels = 3;
     const auto learningRate = 0.1;
     const auto iterationsCount = 5000;

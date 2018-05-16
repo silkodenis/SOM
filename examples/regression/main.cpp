@@ -21,12 +21,11 @@ using namespace std;
 
 static const auto TRAINING_PROCESS_WINDOW_NAME = "Training process";
 
-static const auto WINDOW_HEIGHT = 700;
-static const auto WINDOW_WIDTH = 700;
+static const auto WINDOW_HEIGHT = 650;
+static const auto WINDOW_WIDTH = 650;
 
 static const auto DATA_COLOR = Scalar(0, 0, 255);
-static const auto BACKGROUND_COLOR = Scalar(0, 0, 0);
-static const auto NODES_THREAD_COLOR = Scalar(0, 255, 0);
+static const auto NODES_THREAD_COLOR = Scalar(255, 0, 0);
 
 int main(int argc, const char * argv[]) {
     const auto retrainCount = 100;
@@ -76,20 +75,21 @@ int main(int argc, const char * argv[]) {
         for (auto i = 0; i < epochs; i += step) {
             som.epochs(step);
 
-            Mat dst(WINDOW_HEIGHT, WINDOW_WIDTH, CV_8UC3, BACKGROUND_COLOR);
+            Mat dst(WINDOW_HEIGHT, WINDOW_WIDTH, CV_8UC3, WHITE_COLOR);
             
             for (auto j = 0; j < data.size(); j++) {
-                circle(dst, cv::Point2f(data[j][0], data[j][1]), 1, DATA_COLOR);
+                circle(dst, cv::Point2f(data[j][0], data[j][1]), 1, DATA_COLOR, 2);
             }
             
             for (auto j = 0; j < cells.size() - 1; j++) {
                 cv::Point2f p1(cells[j].weights[0], cells[j].weights[1]);
                 cv::Point2f p2(cells[j + 1].weights[0], cells[j + 1].weights[1]);
                 
-                line(dst, p1, p2, NODES_THREAD_COLOR);
+                line(dst, p1, p2, NODES_THREAD_COLOR, 2);
             }
             
             imshow(TRAINING_PROCESS_WINDOW_NAME, dst);
+            imwrite(to_string(i) + ".png", dst);
             
             waitKey(1);
         }
