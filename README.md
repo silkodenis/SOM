@@ -63,7 +63,7 @@ Hello world!
 A simple example of how to train SOM and get a model view in real time.
 
 <p align="center">
-  <img width="558" height="639" src="https://lh4.googleusercontent.com/qDj2GZCiKxUxX5sbzq9_tsiIdeuRQ-z6eMTkxAFWFPWacEpLZI-1F2rF1mz-o31N3h1F8gUSNtSXqQ=w2880-h1632">
+  <img width="568" height="649" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/real-time%20training/training_proccess.gif?raw=true">
 </p>
 
 **Regression**
@@ -71,7 +71,7 @@ A simple example of how to train SOM and get a model view in real time.
 A simple example of using SOM for regression analysis.
 
 <p align="center">
-  <img width="600" height="600" src="https://lh3.googleusercontent.com/gnzrEyXwvWTlowwlFO4FQTpDztejOO5tjFrrP5vjyqDZPar6STDQH1mBU3_kHMCZNQFLsXwrVJWSgg=w2880-h1632">
+  <img width="650" height="650" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/regression/training_process.gif?raw=true">
 </p>
 
 **Image as dataset**
@@ -79,17 +79,17 @@ A simple example of using SOM for regression analysis.
 An example of using an image as a data set. After receiving the clustered map from one image, we apply it to clustering another image.
 
 <p align="center">
-  <img width="800" height="531" src="https://lh4.googleusercontent.com/I7oIwqGjYEZiWcjXZZDgybv7zfUHa-MKuwnt3r4HzL1tjzkqMOVvzGSr6rU-7xm9YasTqmyjY4EDUA=w2880-h1632">
+  <img width="800" height="531" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/image%20as%20dataset/image_as_dataset_target%20mat.png?raw=true">
 </p>
 
 <p align="center">
-  <img width="363" height="347" src="https://lh6.googleusercontent.com/X5bNs7wKpGhQR--qfJLynty1fuPoERFAwsFvmjDxnljV9l89vSUnJRNWRYL6JM2BONh8TK9vwpsEfA=w2880-h1632">
+  <img width="363" height="347" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/image%20as%20dataset/image_as_dataset_training%20mat.png?raw=true">
   
-  <img width="405" height="350" src="https://lh5.googleusercontent.com/lv5bT8DbV_6pUabje_UY3AtfZKB7VddKWGjLZ6IjME5ib4Nae8_BGvEd53WGQ_jIC9oTHfkfO4dq2A=w2880-h1632">
+  <img width="405" height="350" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/image%20as%20dataset/image_as_dataset_trained%20SOM.png?raw=true">
 </p>
 
 <p align="center">
-  <img width="800" height="531" src="https://lh3.googleusercontent.com/NV-uSp1Qc0R2E4qssw0UFu1_7jq3mnVdRfTh739LGgmPMDs6zP8R_1JTqewTagQLAg1Z9fydPYKmfw=w2880-h1632">
+  <img width="800" height="531" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/image%20as%20dataset/image_as_dataset_processed%20mat.png?raw=true">
 </p>
 
 **Single channel analysis**
