@@ -97,11 +97,11 @@ An example of using an image as a data set. After receiving the clustered map fr
 A simple example of analyzing the channels of a trained map. 
 
 <p align="center">
-  <img width="435" height="376" src="https://lh5.googleusercontent.com/T_JvuqmKMOYPNOy1_B2TgHjYZNxCh5fFXkso3MsbDDHSNagEYSYVi3NzntdV4bHaPDV25ymxsbCHgw=w2880-h1632">
+  <img width="284" height="247" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/single%20channel%20analysis/rgb_map.png?raw=true">
 </p>
 
 <p align="center">
-  <img width="783" height="451" src="https://lh3.googleusercontent.com/_3eCDQEF13slSxcHLbIe4Sfrjn_dINqvfr9qagDDrByhto00vz7E4w0pcMg23H_LYDfE1qtTkdlh-w=w2880-h1632">
+  <img width="852" height="494" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/single%20channel%20analysis/single_channel_maps.png?raw=true">
 </p>
 
 
@@ -110,23 +110,23 @@ A simple example of analyzing the channels of a trained map.
 This example demonstrates various interpretations model view of a trained map using the additional library som_view.
 
 <p align="center">
-  <img width="854" height="490" src="https://lh3.googleusercontent.com/31cQb6SXFv3B7pTwu6cEQKFzbaMeNGlq4_hWZ-oJCxjqme5mjOs7yGTtQK5YbZsJISPTY2p7wXQ9Sg=w2880-h1632">
+  <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/convolution%203d%20+%201d.png?raw=true">
 </p>
 
 <p align="center">
-  <img width="854" height="490" src="https://lh5.googleusercontent.com/CszeKvdmXS3tUnnZUd2tVRzbnDsnnofqoKeHZOrC44EpXCtLkHEsVbLRQcWQXaet8tTGsGksm0Ouaw=w2880-h1632">
+  <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/distances.png?raw=true">
 </p>
 
 <p align="center">
-  <img width="854" height="490" src="https://lh6.googleusercontent.com/imUUfF_u5yCeSLZJcw231XSGwzO0cB4iA6JPAl_EY9QFoKwSNToSPD4_LDlN1H2YHJb8b0D2hH3jMQ=w2880-h1632">
+  <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/actives%20only%203d%20+%201d.png?raw=true">
 </p>
 
 <p align="center">
-  <img width="854" height="490" src="https://lh6.googleusercontent.com/EZhfN-lJEj9khQSIiJ6ZIKXGu2aLaZT2CRNOwVCfuiXfNAv3ae0JGAVw8DbtdKpbQ-9T3orGrd9QuQ=w2880-h1632">
+  <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/approximation%20gradient%20+%20hue.png?raw=true">
 </p>
 
 <p align="center">
-  <img width="511" height="1666" src="https://lh3.googleusercontent.com/MltSQAtD3KDU1idNFdXtsql0PIMr6wmzFVZRnaHDsonAXZ1ZHHi5XX8GEWdUzQLUArTBWRIhFGjchw=w2880-h1632">
+  <img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
 </p>
 
 **Save and load**
@@ -134,7 +134,7 @@ This example demonstrates various interpretations model view of a trained map us
 A simple demonstration of saving and loading your models from a binary file.
 
 <p align="center">
-  <img width="732" height="633" src="https://lh4.googleusercontent.com/i75sj60N-wCx5fPi4YMWOxWsZybURF_Irhcxa__w2ZMTnRH7c-T9lh-g6ycrbU5zvjkfMCVwSfGhlQ=w2880-h1632">
+  <img width="742" height="643" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/save%20and%20load/som.png?raw=true">
 </p>
 
 ## Authors
