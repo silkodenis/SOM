@@ -53,9 +53,9 @@ Here is a brief overview of the examples, the source code of which is attached.
 Hello world!
 
 <p align="center">
-  <img width="430" height="370" src="https://lh4.googleusercontent.com/wb7b6N4zqf7O6jjPipgK5ucnE46rUOfNaPudxQMVil7zks6aAk_edSl6E9Y0c3UQz3Qtm9Hz9WgGYA=w2880-h1632">
+  <img width="412" height="355" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/simple%20training/untrained_map.png?raw=true">
   
-  <img width="430" height="370" src="https://lh5.googleusercontent.com/df0Ubus2j91SGYn2_Aom2E95jD8rt8hO7gZsT7WXX6jcDfKuiT9k4Ulto8NwBStAuFLHl_4Zd2faMQ=w2880-h1632">
+  <img width="412" height="355" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/simple%20training/trained_map.png?raw=true">
 </p>
 
 **Real-time training**
