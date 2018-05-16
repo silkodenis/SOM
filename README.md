@@ -1,6 +1,6 @@
 # Self-Organizing Map (SOM)
 
-Fast, convenient and most complete C++ library using parallel computing based on OpenCL. The map has a hexagonal cells, which allows you to get the correct model view. All this makes it possible to use the library for high-level scientific works.
+Fast and most complete C++ library using parallel computing based on OpenCL. The map has a hexagonal cells, which allows you to get the correct model view. All this makes it possible to use the library for high-level scientific works.
 
 ## Installation in Unix
 Required Packages:
@@ -60,7 +60,7 @@ Hello world!
 
 **Real-time training**
 
-A simple example of how to train SOM and get a model view in real time.
+A simple example of how to training SOM and get a model view in real time.
 
 <p align="center">
   <img width="568" height="649" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/real-time%20training/training_proccess.gif?raw=true">
