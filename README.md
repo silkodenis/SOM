@@ -143,7 +143,7 @@ A simple demonstration of saving and loading your models from a binary file.
 
 ## Credits
 
-Thanks to [Amit Patel](http://www-cs-students.stanford.edu/~amitp/) for the great hexagonal grid solutions.
+Thanks to [Amit Patel](http://www-cs-students.stanford.edu/~amitp/) for the great hexagon grid solutions.
 
 ## License
 
