@@ -141,6 +141,10 @@ A simple demonstration of saving and loading your models from a binary file.
 
 * **Denis Silko** - *Initial work* - [silkodenis](https://github.com/silkodenis)
 
+## Credits
+
+Thanks to [Amit Patel](http://www-cs-students.stanford.edu/~amitp/) for the great hexagonal grid solutions.
+
 ## License
 
 [Apache License 2.0](LICENSE)
