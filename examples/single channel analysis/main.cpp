@@ -34,15 +34,14 @@ int main(int argc, const char * argv[]) {
     
     vector<vector<float>> data{red, green, blue, yellow, orange, purple, dk_green, dk_blue};
     
-    const auto cols = 105;
-    const auto rows = 105;
+    const auto radius = 60;
     const auto hexSize = 3;
     const auto channels = 3;
     const auto learningRate = 0.1;
     const auto iterationsCount = 5000;
     
     SOM som(GPU);
-    som.create(cols, rows, hexSize, channels);
+    som.create(radius, hexSize, channels);
     som.prepare(data, MINMAX_BY_COLUMNS, RANDOM_FROM_DATA);
     som.train(iterationsCount, learningRate);
     
@@ -53,28 +52,14 @@ int main(int argc, const char * argv[]) {
         drawSingleChannelMap(som, 2, HUE)
     };
     
-    vector<Mat> gradientMaps {
-        drawSingleChannelMap(som, 0, SKY_BLUE_TO_PINK),
-        drawSingleChannelMap(som, 1, SKY_BLUE_TO_PINK),
-        drawSingleChannelMap(som, 2, SKY_BLUE_TO_PINK)
-    };
-    
     // Concatenate maps
-    Mat hueMapsMat, gradientMapsMat, allMapsMat;
+    Mat hueMapsMat;
     hconcat(hueMaps, hueMapsMat);
-    hconcat(gradientMaps, gradientMapsMat);
-    
-    vector<Mat> allMaps {
-        hueMapsMat,
-        gradientMapsMat
-    };
-    
-    vconcat(allMaps, allMapsMat);
     
     // Draw and show single channel maps
     namedWindow(SINGLE_CHANNEL_MAPS_WINDOW_NAME);
     moveWindow(SINGLE_CHANNEL_MAPS_WINDOW_NAME, 90, 100);
-    imshow(SINGLE_CHANNEL_MAPS_WINDOW_NAME, allMapsMat);
+    imshow(SINGLE_CHANNEL_MAPS_WINDOW_NAME, hueMapsMat);
     
     // Draw and show three-channel map
     namedWindow(THREE_CHANNEL_MAPS_WINDOW_NAME);
