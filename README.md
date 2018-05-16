@@ -46,7 +46,7 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 ```
 
 ## Examples
-Here is a brief overview of the examples, the source code of which is attached.
+Below is a brief overview of the examples, the source code of which gives a quick start to work with SOM.
 
 **Simple training**
 
