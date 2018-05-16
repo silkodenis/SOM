@@ -97,11 +97,11 @@ An example of using an image as a data set. After receiving the clustered map fr
 A simple example of analyzing the channels of a trained map. 
 
 <p align="center">
-  <img width="284" height="247" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/single%20channel%20analysis/rgb_map.png?raw=true">
+  <img width="283" height="324" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/single%20channel%20analysis/rgb_map.png?raw=true">
 </p>
 
 <p align="center">
-  <img width="852" height="494" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/single%20channel%20analysis/single_channel_maps.png?raw=true">
+  <img width="849" height="324" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/single%20channel%20analysis/single_channel_maps.png?raw=true">
 </p>
 
 
