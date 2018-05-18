@@ -1,4 +1,4 @@
-/* Copyright © 2018 Denis Silko. All rights reserved.
+/* Copyright 2018 Denis Silko. All rights reserved.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -12,6 +12,7 @@
 
 #include "model.hpp"
 #include <assert.h>
+#include <cstring>
 #include "normalizer.hpp"
 #include "hexagon_grid.hpp"
 #include "rectangle_grid.hpp"
@@ -31,7 +32,7 @@ data_(nullptr),
 labels_(nullptr),
 weights_(nullptr),
 distances_(nullptr),
-distancesAcсumulator_(nullptr),
+distancesAccumulator_(nullptr),
 activationStates_(nullptr) {
     uint64_t timeSeed = chrono::high_resolution_clock::now().time_since_epoch().count();
     seed_seq seq{uint32_t(timeSeed & 0xffffffff), uint32_t(timeSeed>>32)};
@@ -56,7 +57,7 @@ Model::~Model() {
     if (labels_) { free(labels_); }
     if (weights_) { free(weights_); }
     if (distances_) { free(distances_); }
-    if (distancesAcсumulator_) { free(distancesAcсumulator_); }
+    if (distancesAccumulator_) { free(distancesAccumulator_); }
     if (activationStates_) { free(activationStates_); }
 }
 
@@ -103,13 +104,13 @@ bool Model::create() {
     labels_ = (cl_int *)malloc(sizeof(cl_int) * nodesCount_);
     weights_ = (cl_float *)malloc(sizeof(cl_float) * nodesCount_ * channelsCount_);
     distances_ = (cl_float *)malloc(sizeof(cl_float) * nodesCount_);
-    distancesAcсumulator_ = (cl_float *)malloc(sizeof(cl_float) * nodesCount_);
+    distancesAccumulator_ = (cl_float *)malloc(sizeof(cl_float) * nodesCount_);
     activationStates_ = (cl_int *)malloc(sizeof(cl_int) * nodesCount_);
     
     memset(input_, 0, sizeof(cl_float) * channelsCount_);
     memset(labels_, 0, sizeof(cl_int) * nodesCount_);
     memset(distances_, 0, sizeof(cl_float) * nodesCount_);
-    memset(distancesAcсumulator_, 0, sizeof(cl_float) * nodesCount_);
+    memset(distancesAccumulator_, 0, sizeof(cl_float) * nodesCount_);
     memset(activationStates_, 0, sizeof(cl_int) * nodesCount_);
     
     setRandomWeights(DEFAULT_MIN_WEIGHT_VALUE, DEFAULT_MAX_WEIGHT_VALUE);
@@ -122,7 +123,7 @@ bool Model::create() {
         Cell cell(points[i * topologicalDimensionality],
                   corners[i * HEXAGON_CORNERS_COUNT * topologicalDimensionality],
                   weights_[i * channelsCount_],
-                  distancesAcсumulator_[i],
+                  distancesAccumulator_[i],
                   labels_[i],
                   activationStates_[i]);
         
@@ -168,7 +169,7 @@ bool Model::load(const string &filePath) {
     
     is.read((char *)&metric_, sizeof(Metric));
     is.read((char *)weights_, streamsize(nodesCount_ * channelsCount_ * sizeof(cl_float)));
-    is.read((char *)distancesAcсumulator_, streamsize(nodesCount_ * sizeof(cl_float)));
+    is.read((char *)distancesAccumulator_, streamsize(nodesCount_ * sizeof(cl_float)));
     is.read((char *)activationStates_, streamsize(nodesCount_ * sizeof(cl_int)));
     is.read((char *)labels_, streamsize(nodesCount_ * sizeof(cl_int)));
     
@@ -206,7 +207,7 @@ bool Model::save(const string &filePath) {
     
     os.write((char *)&metric_, sizeof(Metric));
     os.write((char *)weights_, streamsize(nodesCount_ * channelsCount_ * sizeof(cl_float)));
-    os.write((char *)distancesAcсumulator_, streamsize(nodesCount_ * sizeof(cl_float)));
+    os.write((char *)distancesAccumulator_, streamsize(nodesCount_ * sizeof(cl_float)));
     os.write((char *)activationStates_, streamsize(nodesCount_ * sizeof(cl_int)));
     os.write((char *)labels_, streamsize(nodesCount_ * sizeof(cl_int)));
     
@@ -336,5 +337,5 @@ cl_float & Model::getData() const { return *data_; }
 cl_int & Model::getLabels() const { return *labels_; };
 cl_float & Model::getWeights() const { return *weights_; }
 cl_float & Model::getDistances() const { return *distances_; }
-cl_float & Model::getDistancesAcсumulator() const { return *distancesAcсumulator_; }
+cl_float & Model::getDistancesAccumulator() const { return *distancesAccumulator_; }
 cl_int & Model::getActivationStates() const { return *activationStates_; }

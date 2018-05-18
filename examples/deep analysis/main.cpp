@@ -1,4 +1,4 @@
-/* Copyright © 2018 Denis Silko. All rights reserved.
+/* Copyright 2018 Denis Silko. All rights reserved.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -11,6 +11,7 @@
 */
 
 #include <random>
+#include <chrono>
 #include "som.hpp"
 #include "som_cv_view.hpp"
 

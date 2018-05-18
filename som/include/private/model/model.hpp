@@ -1,4 +1,4 @@
-/* Copyright © 2018 Denis Silko. All rights reserved.
+/* Copyright 2018 Denis Silko. All rights reserved.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -53,7 +53,7 @@ namespace som {
         cl_float & getPoints() const;
         cl_int   & getLabels() const;
         cl_float & getDistances() const;
-        cl_float & getDistancesAcсumulator() const;
+        cl_float & getDistancesAccumulator() const;
         cl_float & getWeights() const;
         cl_int  & getActivationStates() const;
         
@@ -89,7 +89,7 @@ namespace som {
         cl_int   *labels_;
         cl_float *weights_;
         cl_float *distances_;
-        cl_float *distancesAcсumulator_;
+        cl_float *distancesAccumulator_;
         cl_int  *activationStates_;
         
         uniform_real_distribution<double> uniform_;

@@ -1,4 +1,4 @@
-/* Copyright © 2018 Denis Silko. All rights reserved.
+/* Copyright 2018 Denis Silko. All rights reserved.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -103,7 +103,7 @@ size_t Computing::bmuIndex(const cl_float &inputVector, bool accumulateDistances
         case ANGULAR: angularDistanceKernel_->compute(inputVector); break;
     }
     
-    cl_float *distancesAcumulator = &model_.getDistancesAcсumulator();
+    cl_float *distancesAcumulator = &model_.getDistancesAccumulator();
     cl_float *distances = &model_.getDistances();
     auto nodesCount = model_.getNodesCount();
 
