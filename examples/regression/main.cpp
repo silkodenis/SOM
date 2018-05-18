@@ -89,7 +89,6 @@ int main(int argc, const char * argv[]) {
             }
             
             imshow(TRAINING_PROCESS_WINDOW_NAME, dst);
-            imwrite(to_string(i) + ".png", dst);
             
             waitKey(1);
         }
