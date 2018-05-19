@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 2.8)
 project(som)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-set(CMAKE_MACOSX_RPATH 1)
 
 find_package(OpenCL REQUIRED)
 
@@ -64,6 +63,8 @@ endif()
 
 
 if(BUILD_SHARED_LIBS)
+set(CMAKE_MACOSX_RPATH 1)
+
 add_library(som SHARED ${SOURCE_LIB} ${PUBLIC_HEADERS_LIB} ${PRIVATE_HEADERS_LIB})
 target_link_libraries(som ${OpenCL_LIBRARY})
 
