@@ -9,7 +9,7 @@ Required Packages:
 
 Required Dependencies:
 * `OpenCL 1.1 ` or higher 
-* `OpenCV 3` [optional] (for build lib som_view and examples)
+* `OpenCV 3` [optional] (for build view and examples)
 
 These steps have been tested for macOS High Sierra 10.13.14 but should work with other unix-based systems as well.
 
@@ -31,7 +31,8 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 
 ```sh
 7. $ make
-8. $ sudo make install
+8. $ make test
+9. $ sudo make install
 ```
 
 ### Notes
@@ -131,7 +132,7 @@ This example demonstrates various interpretations model view of a trained map us
 
 **Save and load**
 
-A simple demonstration of saving and loading your models from a binary file.
+A simple demonstration of saving and loading your model from a binary file.
 
 <p align="center">
   <img width="742" height="643" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/save%20and%20load/som.png?raw=true">
@@ -140,10 +141,6 @@ A simple demonstration of saving and loading your models from a binary file.
 ## Authors
 
 * **Denis Silko** - *Initial work* - [silkodenis](https://github.com/silkodenis)
-
-## Credits
-
-Thanks to [Amit Patel](http://www-cs-students.stanford.edu/~amitp/) for the great hexagon grid solutions.
 
 ## License
 

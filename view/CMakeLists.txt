@@ -1,15 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(som)
+project(view)
 
 find_package(OpenCV REQUIRED)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-set(CMAKE_MACOSX_RPATH 1)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(../som/include/public)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_MACOSX_RPATH 1)
 set(SOURCE_LIB som_cv_view.cpp)
 set(HEADERS_LIB som_cv_view.hpp)
 
