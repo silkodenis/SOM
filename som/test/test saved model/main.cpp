@@ -17,13 +17,30 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     
+    // Create data set
+    // BGR colors
+    vector<float> red      {0.00, 0.0, 1.00},
+                  green    {0.0,  1.0, 0.00},
+                  blue     {1.00, 0.0, 0.00},
+                  yellow   {0.20, 1.0, 1.00},
+                  orange   {0.25, 0.4, 1.00},
+                  purple   {1.0,  0.0, 1.00},
+                  dk_green {0.25, 0.5, 0.00},
+                  dk_blue  {0.50, 0.0, 0.00};
+    
+    vector<vector<float>> data{red, green, blue, yellow, orange, purple, dk_green, dk_blue};
+    
     // Create model
-    const auto channels = 4;
+    const auto channels = 3;
     const auto radius = 3;
     const auto hexSize = 5;
+    const auto learningRate = 0.2;
+    const auto iterationsCount = 1000;
     
     SOM som(CPU);
     som.create(radius, hexSize, channels);
+    som.prepare(data);
+    som.train(iterationsCount, learningRate);
     
     auto cells = som.getCells();
     
@@ -51,6 +68,8 @@ int main(int argc, const char * argv[]) {
         for (auto j = 0; j < HEXAGON_CORNERS_COUNT; j++) {
             c.push_back(cells[i].corners[j]);
         }
+        
+        som.setLabel(rand(), i);
         
         distances.push_back(cells[i].distance[0]);
         labels.push_back(cells[i].label[0]);
