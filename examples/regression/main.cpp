@@ -23,14 +23,12 @@ static const auto TRAINING_PROCESS_WINDOW_NAME = "Training process";
 
 static const auto WINDOW_HEIGHT = 650;
 static const auto WINDOW_WIDTH = 650;
-
 static const auto DATA_COLOR = Scalar(0, 0, 255);
 static const auto NODES_THREAD_COLOR = Scalar(255, 0, 0);
+static const auto RETRAIN_COUNT = 100;
 
 int main(int argc, const char * argv[]) {
-    const auto retrainCount = 100;
-    
-    for (auto i = 0; i < retrainCount; i++) {
+    for (auto i = 0; i < RETRAIN_COUNT; i++) {
         // Create random data set
         vector<vector<float>> data;
         
