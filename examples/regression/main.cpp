@@ -30,7 +30,7 @@ static const auto NODES_THREAD_COLOR = Scalar(255, 0, 0);
 int main(int argc, const char * argv[]) {
     const auto retrainCount = 100;
     
-    for (auto iter = 0; iter < retrainCount; iter++) {
+    for (auto i = 0; i < retrainCount; i++) {
         // Create random data set
         vector<vector<float>> data;
         
@@ -39,12 +39,12 @@ int main(int argc, const char * argv[]) {
         seed_seq seq{uint32_t(timeSeed & 0xffffffff), uint32_t(timeSeed>>32)};
         rng_.seed(seq);
         
-        uniform_real_distribution<float> uniform_(200, 300);
+        uniform_real_distribution<float> scatterNoiseRange(200, 300);
         
-        for (auto i = 0; i < 360 * 5; i++) {
+        for (auto j = 0; j < 360 * 5; j++) {
             data.push_back({
-                WINDOW_WIDTH/2 + uniform_(rng_) * cos((float)i),
-                WINDOW_HEIGHT/2 + uniform_(rng_) * sin((float)i)
+                WINDOW_WIDTH/2 + scatterNoiseRange(rng_) * cos((float)j),
+                WINDOW_HEIGHT/2 + scatterNoiseRange(rng_) * sin((float)j)
             });
         }
         
@@ -72,18 +72,18 @@ int main(int argc, const char * argv[]) {
         
         auto cells = som.getCells();
         
-        for (auto i = 0; i < epochs; i += step) {
+        for (auto j = 0; j < epochs; j += step) {
             som.epochs(step);
 
             Mat dst(WINDOW_HEIGHT, WINDOW_WIDTH, CV_8UC3, WHITE_COLOR);
             
-            for (auto j = 0; j < data.size(); j++) {
-                circle(dst, cv::Point2f(data[j][0], data[j][1]), 1, DATA_COLOR, 2);
+            for (auto m = 0; m < data.size(); m++) {
+                circle(dst, cv::Point2f(data[m][0], data[m][1]), 1, DATA_COLOR, 2);
             }
             
-            for (auto j = 0; j < cells.size() - 1; j++) {
-                cv::Point2f p1(cells[j].weights[0], cells[j].weights[1]);
-                cv::Point2f p2(cells[j + 1].weights[0], cells[j + 1].weights[1]);
+            for (auto m = 0; m < cells.size() - 1; m++) {
+                cv::Point2f p1(cells[m].weights[0], cells[m].weights[1]);
+                cv::Point2f p2(cells[m + 1].weights[0], cells[m + 1].weights[1]);
                 
                 line(dst, p1, p2, NODES_THREAD_COLOR, 2);
             }
