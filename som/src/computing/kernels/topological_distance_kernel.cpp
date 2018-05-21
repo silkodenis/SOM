@@ -40,14 +40,12 @@ TopologicalDistanceKernel::~TopologicalDistanceKernel() {
 }
 
 void TopologicalDistanceKernel::connect(Model &model) {
-    cl_int error = 0;
-    
     cl_float *points = &model.getPoints();
     auto nodesCount = model.getNodesCount();
     
     distances_ = (cl_float *)malloc(sizeof(cl_float) * nodesCount);
-    pointsBuffer_ = clCreateBuffer(context_, CL_MEM_COPY_HOST_PTR, sizeof(cl_float) * nodesCount * 2, points, &error);
-    distancesBuffer_ = clCreateBuffer(context_, CL_MEM_READ_ONLY, nodesCount * sizeof(cl_float), nullptr, &error);
+    pointsBuffer_ = clCreateBuffer(context_, CL_MEM_COPY_HOST_PTR, sizeof(cl_float) * nodesCount * 2, points, nullptr);
+    distancesBuffer_ = clCreateBuffer(context_, CL_MEM_READ_ONLY, nodesCount * sizeof(cl_float), nullptr, nullptr);
     
     clSetKernelArg(kernel_, 0, sizeof(cl_mem), &pointsBuffer_);
     clSetKernelArg(kernel_, 1, sizeof(cl_mem), &distancesBuffer_);

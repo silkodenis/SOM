@@ -18,16 +18,14 @@ using namespace som;
 Kernel::Kernel(const string code, const string name, cl_context &context, cl_command_queue &commandQueue, cl_device_id &deviceId) :
 commandQueue_(commandQueue), context_(context)
 {
-    cl_int error = 0;
-    
     const char *source_str = code.c_str();
     size_t source_size = code.size();
     
-    program_ = clCreateProgramWithSource(context, 1, (const char **)&source_str, (const size_t *)&source_size, &error);
+    program_ = clCreateProgramWithSource(context, 1, (const char **)&source_str, (const size_t *)&source_size, nullptr);
     
     clBuildProgram(program_, 1, &deviceId, nullptr, nullptr, nullptr);
     
-    kernel_ = clCreateKernel(program_, name.c_str(), &error);
+    kernel_ = clCreateKernel(program_, name.c_str(), nullptr);
 }
 
 Kernel::~Kernel() {

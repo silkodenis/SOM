@@ -47,9 +47,8 @@ pointDistanceKernel_(nullptr) {
         case ALL_DEVICES: clGetDeviceIDs(platforms, CL_DEVICE_TYPE_ALL, 1, &deviceId_, &num_devices); break;
     }
     
-    cl_int error = 0;
-    context_ = clCreateContext(nullptr, 1, &deviceId_, nullptr, nullptr, &error);
-    commandQueue_ = clCreateCommandQueue(context_, deviceId_, 0, &error);
+    context_ = clCreateContext(nullptr, 1, &deviceId_, nullptr, nullptr, nullptr);
+    commandQueue_ = clCreateCommandQueue(context_, deviceId_, 0, nullptr);
     
     pointDistanceKernel_ = new TopologicalDistanceKernel(context_, commandQueue_, deviceId_);
     angularDistanceKernel_ = new AngularDistanceKernel(context_, commandQueue_, deviceId_);
@@ -60,11 +59,11 @@ pointDistanceKernel_(nullptr) {
     auto channels = model_.getChannelsCount();
     auto nodesCount = model_.getNodesCount();
     
-    inputVectorBuffer_ = clCreateBuffer(context_, CL_MEM_READ_WRITE, sizeof(cl_float) * channels, nullptr, &error);
+    inputVectorBuffer_ = clCreateBuffer(context_, CL_MEM_READ_WRITE, sizeof(cl_float) * channels, nullptr, nullptr);
     
     cl_float *weights = &model_.getWeights();
-    weightsBuffer_ = clCreateBuffer(context_, CL_MEM_COPY_HOST_PTR, nodesCount * channels * sizeof(cl_float), weights, &error);
-    weightDistancesBuffer_ = clCreateBuffer(context_, CL_MEM_READ_ONLY, nodesCount * sizeof(cl_float), nullptr, &error);
+    weightsBuffer_ = clCreateBuffer(context_, CL_MEM_COPY_HOST_PTR, nodesCount * channels * sizeof(cl_float), weights, nullptr);
+    weightDistancesBuffer_ = clCreateBuffer(context_, CL_MEM_READ_ONLY, nodesCount * sizeof(cl_float), nullptr, nullptr);
     
     pointDistanceKernel_->connect(model_);
     angularDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
