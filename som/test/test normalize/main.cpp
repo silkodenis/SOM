@@ -63,7 +63,7 @@ int main(int argc, const char * argv[]) {
     normalizer.normalize(inputData, outputData);
     normalizer.normalize(inputVector, *outputVector);
     
-    test(outputData, {
+    test(outputData, { // expected output data
         {1.000000, 1.000000,  0.00, 0.0804796, 1.000000},
         {0.864322, 0.731441,  0.28, 0.592466,  0.371832},
         {0.542714, 0.000000,  0.72, 0.000000,  0.583253},
@@ -71,14 +71,20 @@ int main(int argc, const char * argv[]) {
         {0.000000, 0.246725,  0.23, 0.520548,  0.000000},
     });
     
-    test(outputVector, {0.0502513, 0.235808, 0.39, 0.19863, 0.310234});
+    test(outputVector, { // expected vector
+        0.0502513,
+        0.235808,
+        0.39,
+        0.19863,
+        0.310234
+    });
     
     // Test normalize by rows
     normalizer.setNormalizationType(MINMAX_BY_ROWS);
     normalizer.normalize(inputData, outputData);
     normalizer.normalize(inputVector, *outputVector);
     
-    test(outputData, {
+    test(outputData, { // expected output data
         {0.0330186, 0.147866, 0.00256356, 0.208776, 0.966153},
         {0.0371685, 0.166187, 0.00667774, 0.294198, 0.940427},
         {0.0274204, 0.116804, 0.0115142,  0.2361,   0.964225},
@@ -86,7 +92,13 @@ int main(int argc, const char * argv[]) {
         {0.0180899, 0.161338, 0.00705946, 0.337236, 0.927289}
     });
     
-    test(outputVector, {0.0173849, 0.142739, 0.00836567, 0.275152, 0.95055});
+    test(outputVector, { // expected vector
+        0.0173849,
+        0.142739,
+        0.00836567,
+        0.275152,
+        0.95055
+    });
     
     free(outputVector);
     free(outputData);
