@@ -45,6 +45,8 @@ int main(int argc, const char * argv[]) {
     // Create model with initial weights
     cl_float *weights = &model.getWeights();
     
+    vector<cl_float> inputVector {0.233, 0.924, 0.455};
+    
     vector<vector<cl_float>> initialWeights {
         {0.262, 0.358, 0.454},
         {0.159, 0.378, 0.375},
@@ -60,8 +62,6 @@ int main(int argc, const char * argv[]) {
     for (auto i = 0; i < nodesCount; i++) {
         memcpy(&weights[i * channels], initialWeights[i].data(), sizeof(cl_float) * channels);
     }
-    
-    vector<cl_float> inputVector {0.233, 0.924, 0.455};
 
     Computing computing(model, ALL_DEVICES);
     
