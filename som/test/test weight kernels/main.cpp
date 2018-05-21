@@ -12,10 +12,7 @@
 
 #include <assert.h>
 #include "model.hpp"
-#include "angular_distance_kernel.hpp"
-#include "taxicab_distance_kernel.hpp"
-#include "squared_distance_kernel.hpp"
-#include "euclidean_distance_kernel.hpp"
+#include "computing.hpp"
 
 using namespace som;
 using namespace std;
@@ -24,30 +21,17 @@ bool cmpf(cl_float a, cl_float b, cl_float epsilon = 0.00005f) {
     return (fabs(a - b) < epsilon);
 }
 
-void testKernel(WeightDistanceKernel &kernel, const Model &model, const vector<cl_float> &inputVector, const vector<cl_float> &expectedDistances) {
-    kernel.compute(*inputVector.data());
+void test(const Model &model, const vector<cl_float> &expectedDistances) {
     cl_float *distances = &model.getDistances();
     
     const auto vectorSize = expectedDistances.size();
-
+    
     for (auto i = 0; i < vectorSize; i++) {
         assert(cmpf(distances[i], expectedDistances[i]));
     }
 }
 
 int main(int argc, const char * argv[]) {
-    
-    // Create OpenCL Host
-    cl_platform_id platforms;
-    cl_uint num_platforms;
-    clGetPlatformIDs(1, &platforms, &num_platforms);
-    
-    cl_uint num_devices;
-    cl_device_id deviceId;
-    clGetDeviceIDs(platforms, CL_DEVICE_TYPE_ALL, 1, &deviceId, &num_devices);
-    
-    cl_context context = clCreateContext(nullptr, 1, &deviceId, nullptr, nullptr, nullptr);
-    cl_command_queue commandQueue = clCreateCommandQueue(context, deviceId, 0, nullptr);
     
     // Create model
     const auto cols = 3;
@@ -57,8 +41,8 @@ int main(int argc, const char * argv[]) {
     const auto nodesCount = cols * rows;
     
     Model model(cols, rows, channels, hexSize);
-    
-    // Create buffers with initial weights
+
+    // Create model with initial weights
     cl_float *weights = &model.getWeights();
     
     vector<vector<cl_float>> initialWeights {
@@ -77,24 +61,14 @@ int main(int argc, const char * argv[]) {
         memcpy(&weights[i * channels], initialWeights[i].data(), sizeof(cl_float) * channels);
     }
     
-    cl_mem inputVectorBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE, sizeof(cl_float) * channels, nullptr, nullptr);
-    cl_mem weightsBuffer = clCreateBuffer(context, CL_MEM_COPY_HOST_PTR, nodesCount * channels * sizeof(cl_float), weights, nullptr);
-    cl_mem weightDistancesBuffer = clCreateBuffer(context, CL_MEM_READ_ONLY, nodesCount * sizeof(cl_float), nullptr, nullptr);
-    
-    // Test kernel
-    AngularDistanceKernel angularKernel(context, commandQueue, deviceId);
-    TaxicabDistanceKernel taxicabKernel(context, commandQueue, deviceId);
-    SquaredDistanceKernel squaredKernel(context, commandQueue, deviceId);
-    EuclideanDistanceKernel euclideanKernel(context, commandQueue, deviceId);
-    
-    angularKernel.connect(model, inputVectorBuffer, weightsBuffer, weightDistancesBuffer);
-    taxicabKernel.connect(model, inputVectorBuffer, weightsBuffer, weightDistancesBuffer);
-    squaredKernel.connect(model, inputVectorBuffer, weightsBuffer, weightDistancesBuffer);
-    euclideanKernel.connect(model, inputVectorBuffer, weightsBuffer, weightDistancesBuffer);
-
     vector<cl_float> inputVector {0.233, 0.924, 0.455};
+
+    Computing computing(model, ALL_DEVICES);
     
-    testKernel(angularKernel, model, inputVector, { // expected angular distances
+    model.setMetric(ANGULAR);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected angular distances
         0.467379,
         0.32034,
         0.746025,
@@ -106,7 +80,10 @@ int main(int argc, const char * argv[]) {
         0.469046
     });
     
-    testKernel(taxicabKernel, model, inputVector, { // expected taxicab distances
+    model.setMetric(TAXICAB);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected taxicab distances
         0.596,
         0.7,
         1.258,
@@ -118,7 +95,10 @@ int main(int argc, const char * argv[]) {
         0.7
     });
     
-    testKernel(squaredKernel, model, inputVector, { // expected squared distances
+    model.setMetric(SQUARED);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected squared distances
         0.321198,
         0.309992,
         0.582938,
@@ -130,7 +110,10 @@ int main(int argc, const char * argv[]) {
         0.300846
     });
     
-    testKernel(euclideanKernel, model, inputVector, { // expected euclidean distances
+    model.setMetric(EUCLIDEAN);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected euclidean distances
         0.566743,
         0.556769,
         0.763504,
@@ -141,14 +124,6 @@ int main(int argc, const char * argv[]) {
         0.798625,
         0.548494
     });
-
-    // Release
-    clReleaseMemObject(inputVectorBuffer);
-    clReleaseMemObject(weightsBuffer);
-    clReleaseMemObject(weightDistancesBuffer);
-    clReleaseCommandQueue(commandQueue);
-    clReleaseDevice(deviceId);
-    clReleaseContext(context);
     
     return 0;
 }

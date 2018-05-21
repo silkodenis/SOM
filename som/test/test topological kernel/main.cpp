@@ -12,7 +12,7 @@
 
 #include <assert.h>
 #include "model.hpp"
-#include "topological_distance_kernel.hpp"
+#include "computing.hpp"
 
 using namespace som;
 using namespace std;
@@ -30,19 +30,6 @@ void test(const cl_float *distances, const vector<cl_float> &expectedDistances) 
 }
 
 int main(int argc, const char * argv[]) {
-    
-    // Create OpenCL Host
-    cl_platform_id platforms;
-    cl_uint num_platforms;
-    clGetPlatformIDs(1, &platforms, &num_platforms);
-    
-    cl_uint num_devices;
-    cl_device_id deviceId;
-    clGetDeviceIDs(platforms, CL_DEVICE_TYPE_ALL, 1, &deviceId, &num_devices);
-    
-    cl_context context = clCreateContext(nullptr, 1, &deviceId, nullptr, nullptr, nullptr);
-    cl_command_queue commandQueue = clCreateCommandQueue(context, deviceId, 0, nullptr);
-    
     // Create model
     const auto cols = 3;
     const auto rows = 3;
@@ -51,12 +38,9 @@ int main(int argc, const char * argv[]) {
     const auto bmuIndex = 3;
     
     Model model(cols, rows, channels, hexSize);
-    
-    // Test kernel
-    TopologicalDistanceKernel kernel(context, commandQueue, deviceId);
-    kernel.connect(model);
-    
-    cl_float *distances = &kernel.compute(bmuIndex);
+
+    Computing computing(model, ALL_DEVICES);
+    cl_float *distances = &computing.pointDistances(bmuIndex);
     
     test(distances, { // expected distances
         18.75,
@@ -69,11 +53,6 @@ int main(int argc, const char * argv[]) {
         56.25,
         75
     });
-    
-    // Release
-    clReleaseCommandQueue(commandQueue);
-    clReleaseDevice(deviceId);
-    clReleaseContext(context);
     
     return 0;
 }
