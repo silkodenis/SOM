@@ -4,5 +4,7 @@ project(tests)
 
 add_subdirectory(test\ normalize)
 add_subdirectory(test\ opencl)
+add_subdirectory(test\ topological\ kernel)
+add_subdirectory(test\ weight\ kernels)
 add_subdirectory(test\ saved\ model)
 
