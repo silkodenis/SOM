@@ -50,11 +50,15 @@ void Normalizer::save(ofstream &os) {
     os.write((char *)sumComponents_, streamsize(channels_ * sizeof(cl_float)));
 }
 
+#pragma mark - Set
+
+void Normalizer::setNormalizationType(const Normalization normalizationType) {
+    type_ = normalizationType;
+}
+
 #pragma mark - Normalize data
 
-cl_float & Normalizer::normalize(const vector<vector<cl_float>> &data, cl_float *dst, const Normalization type) {
-    type_ = type;
-    
+cl_float & Normalizer::normalize(const vector<vector<cl_float>> &data, cl_float *dst) {
     size_t elementsCount = data.size();
     size_t lenght = elementsCount * channels_;
     
@@ -70,9 +74,7 @@ cl_float & Normalizer::normalize(const vector<vector<cl_float>> &data, cl_float 
     return dst_;
 }
 
-cl_float & Normalizer::normalize(const uint8_t *pixelBuffer, const size_t lenght, cl_float *dst, const Normalization type) {
-    type_ = type;
-    
+cl_float & Normalizer::normalize(const uint8_t *pixelBuffer, const size_t lenght, cl_float *dst) {
     return normalizeData(pixelBuffer, lenght, dst);
 }
 

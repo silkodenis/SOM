@@ -219,6 +219,8 @@ bool Model::save(const string &filePath) {
 #pragma mark - Prepare
 
 void Model::prepare(const vector<vector<cl_float>> &data, const Normalization normalizationType, const Weights initialWeights) {
+    normalizer_->setNormalizationType(normalizationType);
+    
     if (data_) {
         free(data_);
         data_ = nullptr;
@@ -228,7 +230,7 @@ void Model::prepare(const vector<vector<cl_float>> &data, const Normalization no
     auto lenght = dataCount_ * channelsCount_;
     
     data_ = (cl_float *)malloc(sizeof(cl_float) * lenght);
-    data_ = &normalizer_->normalize(data, data_, normalizationType);
+    data_ = &normalizer_->normalize(data, data_);
     
     uniform_.reset();
     uniform_ = uniform_real_distribution<double>(0, data.size() - 1);
@@ -237,6 +239,8 @@ void Model::prepare(const vector<vector<cl_float>> &data, const Normalization no
 }
 
 void Model::prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization normalizationType, const Weights initialWeights) {
+    normalizer_->setNormalizationType(normalizationType);
+    
     if (data_) {
         free(data_);
         data_ = nullptr;
@@ -245,7 +249,7 @@ void Model::prepare(const uint8_t *pixelBuffer, const size_t lenght, const Norma
     dataCount_ = lenght / channelsCount_;
     
     data_ = (cl_float *)malloc(sizeof(cl_float) * lenght);
-    data_ = &normalizer_->normalize(pixelBuffer, lenght, data_, normalizationType);
+    data_ = &normalizer_->normalize(pixelBuffer, lenght, data_);
     
     uniform_.reset();
     uniform_ = uniform_real_distribution<double>(0, dataCount_ - 1);

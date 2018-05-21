@@ -11,6 +11,7 @@
  */
 
 #include "som.hpp"
+#include <assert.h>
 
 using namespace som;
 using namespace std;
@@ -85,7 +86,6 @@ int main(int argc, const char * argv[]) {
     som.release();
     cells.clear();
 
-    
     // Load and test saved model
     som.load("model.som");
     cells = som.getCells();

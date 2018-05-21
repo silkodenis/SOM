@@ -47,7 +47,7 @@ int main(int argc, const char * argv[]) {
 
     SOM som(CPU);
     som.create(radius, hexSize, channels);
-    som.prepare(data, MINMAX_BY_COLUMNS, RANDOM_FROM_DATA);
+    som.prepare(data, MINMAX_BY_ROWS, RANDOM_FROM_DATA);
     som.train(iterationsCount, learningRate, EUCLIDEAN);
 
     // Draw single channel maps

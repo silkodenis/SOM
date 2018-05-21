@@ -11,6 +11,7 @@
  */
 
 #include <iostream>
+#include <assert.h>
 
 #ifdef __APPLE__
 #include <OpenCL/OpenCL.h>

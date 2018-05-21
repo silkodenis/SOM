@@ -32,8 +32,10 @@ namespace som {
         void load(ifstream &is);
         void save(ofstream &os);
         
-        cl_float & normalize(const vector<vector<cl_float>> &src, cl_float *dst, const Normalization);
-        cl_float & normalize(const uint8_t *src, const size_t lenght, cl_float *dst, const Normalization);
+        void setNormalizationType(const Normalization);
+        
+        cl_float & normalize(const vector<vector<cl_float>> &src, cl_float *dst);
+        cl_float & normalize(const uint8_t *src, const size_t lenght, cl_float *dst);
         cl_float & normalize(const vector<cl_float> &src, cl_float &dst);
         cl_float & normalize(const uint8_t *src, cl_float &dst);
         
@@ -149,7 +151,7 @@ namespace som {
         auto invLenght = 1.0 / sqrt(sum);
         
         for (auto i = 0; i < channels_; i++) {
-            dst[i] *= invLenght;
+            dst[i] = src[i] * invLenght;
         }
     }
     
