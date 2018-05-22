@@ -130,6 +130,14 @@ This example demonstrates various interpretations model view of a trained map us
   <img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
 </p>
 
+**Debugging training**
+
+This example demonstrates the change of the map error in the training process. It's important to timely stop training to avoid retrain the model. Observation of the convergence dynamics will help you to justify the number of epochs, learning rate and distance metric.
+
+<p align="center">
+  <img width="800" height="600" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/training%20process/training_process.gif?raw=true">
+</p>
+
 **Save and load**
 
 A simple demonstration of saving and loading your model from a binary file.
