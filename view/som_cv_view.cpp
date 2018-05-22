@@ -22,11 +22,6 @@ using namespace cv;
 using namespace som;
 
 namespace som {
-    static const Scalar GREEN_COLOR(0, 255, 0);
-    static const Scalar RED_COLOR(0, 0, 255);
-    static const Scalar BLUE_COLOR(255, 0, 0);
-    static const Scalar YELLOW_COLOR(0, 255, 255);
-    
     static const Scalar BACKGROUND_COLOR(WHITE_COLOR);
     static const Scalar GRID_COLOR(BLACK_COLOR);
     static const Scalar CIRCLE_COLOR(RED_COLOR);
@@ -301,6 +296,8 @@ extern cv::Mat som::draw1DMap(const SOM &som,
     
     return result;
 }
+
+
 
 #pragma mark - Normalization
 

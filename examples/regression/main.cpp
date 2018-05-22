@@ -23,8 +23,6 @@ static const auto TRAINING_PROCESS_WINDOW_NAME = "Training process";
 
 static const auto WINDOW_HEIGHT = 650;
 static const auto WINDOW_WIDTH = 650;
-static const auto DATA_COLOR = Scalar(0, 0, 255);
-static const auto NODES_THREAD_COLOR = Scalar(255, 0, 0);
 static const auto RETRAIN_COUNT = 100;
 
 int main(int argc, const char * argv[]) {
@@ -76,14 +74,14 @@ int main(int argc, const char * argv[]) {
             Mat dst(WINDOW_HEIGHT, WINDOW_WIDTH, CV_8UC3, WHITE_COLOR);
             
             for (auto m = 0; m < data.size(); m++) {
-                circle(dst, cv::Point2f(data[m][0], data[m][1]), 1, DATA_COLOR, 2);
+                circle(dst, cv::Point2f(data[m][0], data[m][1]), 1, RED_COLOR, 2);
             }
             
             for (auto m = 0; m < cells.size() - 1; m++) {
                 cv::Point2f p1(cells[m].weights[0], cells[m].weights[1]);
                 cv::Point2f p2(cells[m + 1].weights[0], cells[m + 1].weights[1]);
                 
-                line(dst, p1, p2, NODES_THREAD_COLOR, 2);
+                line(dst, p1, p2, BLUE_COLOR, 2);
             }
             
             imshow(TRAINING_PROCESS_WINDOW_NAME, dst);

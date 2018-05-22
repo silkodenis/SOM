@@ -21,6 +21,11 @@ namespace som {
     
     static const cv::Scalar BLACK_COLOR(0, 0, 0);
     static const cv::Scalar WHITE_COLOR(255, 255, 255);
+    static const cv::Scalar GREEN_COLOR(0, 255, 0);
+    static const cv::Scalar RED_COLOR(0, 0, 255);
+    static const cv::Scalar CORAL_COLOR(80, 127, 255);
+    static const cv::Scalar BLUE_COLOR(255, 0, 0);
+    static const cv::Scalar YELLOW_COLOR(0, 255, 255);
     
     enum GradientColors {
         DARK_ORANGE_TO_BLUE = 0,

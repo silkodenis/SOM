@@ -12,7 +12,7 @@ include_directories(../../som/include/public)
 
 set(SOURCE_EXE main.cpp)
 
-add_executable(simple_training ${SOURCE_EXE})
+add_executable(training_process ${SOURCE_EXE})
 
-target_link_libraries(simple_training ${OpenCL_LIBRARY})
-target_link_libraries(simple_training som_view)	
+target_link_libraries(training_process ${OpenCL_LIBRARY})
+target_link_libraries(training_process som_view)	

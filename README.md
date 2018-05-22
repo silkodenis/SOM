@@ -37,7 +37,7 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 
 ### Notes
 ```sh
-## to generate XCode project use:
+## to generate XCode projects use:
 6. $ cmake -G Xcode ../
 ```
 

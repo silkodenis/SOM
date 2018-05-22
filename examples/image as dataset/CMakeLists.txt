@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(som)
+project(examples)
 
 add_definitions(-DTARGET_IMAGE_PATH="${PROJECT_BINARY_DIR}/images/target_image.png")
 add_definitions(-DTRAIN_IMAGE_PATH="${PROJECT_BINARY_DIR}/images/train_image.png")
