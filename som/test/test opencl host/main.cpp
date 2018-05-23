@@ -13,10 +13,11 @@
 #include <iostream>
 #include <assert.h>
 
+#define CL_USE_DEPRECATED_OPENCL_1_2_APIS
+
 #ifdef __APPLE__
 #include <OpenCL/OpenCL.h>
 #else
-#define CL_USE_DEPRECATED_OPENCL_1_2_APIS
 #include <CL/cl.h>
 #endif
 

@@ -23,7 +23,7 @@ using namespace std;
 static const string TRAINING_PROCESS_WINDOW_NAME = "Training process";
 
 extern vector<vector<cl_float>> createRandomDataSet(const size_t channels, const size_t labels, uniform_real_distribution<cl_float> noiseRange);
-extern void showTrainingProcess(SOM &som, const size_t iterationsCount, const double learningRate, const size_t step, const Metric metric);
+extern void showTrainingProcess(SOM &som, const size_t iterationsCount, const double learningRate, const size_t step, const DistanceMetric metric);
 
 int main(int argc, const char * argv[]) {
     
@@ -55,7 +55,7 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-void showTrainingProcess(SOM &som, const size_t iterationsCount, const double learningRate, const size_t step, const Metric metric) {
+void showTrainingProcess(SOM &som, const size_t iterationsCount, const double learningRate, const size_t step, const DistanceMetric metric) {
     const auto width = 800;
     const auto height = 600;
     const auto verticalOffset = 50;

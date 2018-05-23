@@ -110,13 +110,13 @@ bool SOM::create(const size_t radius, const size_t hexSize, const size_t channel
 
 #pragma mark - Prepare
 
-void SOM::prepare(const vector<vector<float>> &data, const Normalization normalization, const Weights initialWeights) {
+void SOM::prepare(const vector<vector<float>> &data, const Normalization normalization, const InitialWeights initialWeights) {
     assert(model_ && data.size() > 0 && data[0].size() == model_->getChannelsCount());
     
     model_->prepare(data, normalization, initialWeights);
 }
 
-void SOM::prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization normalization, const Weights initialWeights) {
+void SOM::prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization normalization, const InitialWeights initialWeights) {
     assert(model_ && pixelBuffer && lenght >= model_->getChannelsCount());
 
     model_->prepare(pixelBuffer, lenght, normalization, initialWeights);
@@ -130,7 +130,7 @@ void SOM::setRandomWeights(const float min, const float max) {
 
 #pragma mark - Training
 
-void SOM::train(const size_t iterationsCount, const double learningRate, const Metric metric, bool epochMode) {
+void SOM::train(const size_t iterationsCount, const double learningRate, const DistanceMetric metric, bool epochMode) {
     assert(model_ && trainer_);
     
     clock_t start = clock();

@@ -16,10 +16,11 @@
 #include <iostream>
 #include <vector>
 
+#define CL_USE_DEPRECATED_OPENCL_1_2_APIS
+
 #ifdef __APPLE__
 #include <OpenCL/OpenCL.h>
 #else
-#define CL_USE_DEPRECATED_OPENCL_1_2_APIS
 #include <CL/cl.h>
 #endif
 
@@ -33,9 +34,9 @@ namespace som {
     
     enum Device { ALL_DEVICES, CPU, GPU };
     enum Normalization { NO_NORM, MINMAX_BY_COLUMNS, MINMAX_BY_ROWS };
-    enum Weights { RANDOM_01, RANDOM_FROM_DATA };
+    enum InitialWeights { RANDOM_01, RANDOM_FROM_DATA };
 
-    enum Metric {
+    enum DistanceMetric {
         SAD,       // Sum of Absolute Difference, also known as Manhattan or Taxicab norm
         SSD,       // Sum of Squared Difference, also known as Euclidean norm
         MAE,       // Mean-Absolute Error, is a normalized version SAD
@@ -43,7 +44,7 @@ namespace som {
         EUCLIDEAN, // Euclidean Distance
         MANHATTAN, // Manhattan Distance, a special case of the Minkowski distance with p=1 and equivalent to the SAD
         CHEBYSHEV, // Chebyshev Distance, a special case of the Minkowski distance where p goes to infinity
-        MINKOWSKI, // Minkowski Distance, with p=3
+        MINKOWSKI, // Minkowski Distance with p=3
         CANBERRA,  // Canberra Distance, is a weighted version of the Manhattan distance
         COSINE     // Cosine Distance, contains the dot product scaled by the product of the Euclidean distances from the origin.
     };

@@ -37,11 +37,11 @@ namespace som {
         bool save(const string &filePath);
         
         // Prepare
-        void prepare(const vector<vector<float>> &data, const Normalization = NO_NORM, const Weights = RANDOM_FROM_DATA);
-        void prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization = NO_NORM, const Weights = RANDOM_FROM_DATA);
+        void prepare(const vector<vector<float>> &data, const Normalization = NO_NORM, const InitialWeights = RANDOM_FROM_DATA);
+        void prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization = NO_NORM, const InitialWeights = RANDOM_FROM_DATA);
         
         // Training
-        void train(const size_t iterationsCount, const double learningRate, const Metric = EUCLIDEAN, bool manual = false);
+        void train(const size_t iterationsCount, const double learningRate, const DistanceMetric = EUCLIDEAN, bool manual = false);
         bool epochs(size_t count);
         
         // Usage

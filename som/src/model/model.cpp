@@ -167,7 +167,7 @@ bool Model::load(const string &filePath) {
     
     normalizer_->load(is);
     
-    is.read((char *)&metric_, sizeof(Metric));
+    is.read((char *)&metric_, sizeof(DistanceMetric));
     is.read((char *)weights_, streamsize(nodesCount_ * channelsCount_ * sizeof(cl_float)));
     is.read((char *)distancesAccumulator_, streamsize(nodesCount_ * sizeof(cl_float)));
     is.read((char *)activationStates_, streamsize(nodesCount_ * sizeof(cl_int)));
@@ -205,7 +205,7 @@ bool Model::save(const string &filePath) {
     
     normalizer_->save(os);
     
-    os.write((char *)&metric_, sizeof(Metric));
+    os.write((char *)&metric_, sizeof(DistanceMetric));
     os.write((char *)weights_, streamsize(nodesCount_ * channelsCount_ * sizeof(cl_float)));
     os.write((char *)distancesAccumulator_, streamsize(nodesCount_ * sizeof(cl_float)));
     os.write((char *)activationStates_, streamsize(nodesCount_ * sizeof(cl_int)));
@@ -218,7 +218,7 @@ bool Model::save(const string &filePath) {
 
 #pragma mark - Prepare
 
-void Model::prepare(const vector<vector<cl_float>> &data, const Normalization normalizationType, const Weights initialWeights) {
+void Model::prepare(const vector<vector<cl_float>> &data, const Normalization normalizationType, const InitialWeights initialWeights) {
     normalizer_->setNormalizationType(normalizationType);
     
     if (data_) {
@@ -238,7 +238,7 @@ void Model::prepare(const vector<vector<cl_float>> &data, const Normalization no
     setWeights(initialWeights);
 }
 
-void Model::prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization normalizationType, const Weights initialWeights) {
+void Model::prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization normalizationType, const InitialWeights initialWeights) {
     normalizer_->setNormalizationType(normalizationType);
     
     if (data_) {
@@ -257,7 +257,7 @@ void Model::prepare(const uint8_t *pixelBuffer, const size_t lenght, const Norma
     setWeights(initialWeights);
 }
 
-void Model::setWeights(const Weights initialWeights) {
+void Model::setWeights(const InitialWeights initialWeights) {
     switch (initialWeights) {
         case RANDOM_01:
             setRandomWeights(0, 1);
@@ -312,7 +312,7 @@ void Model::setLabels(vector<cl_int> labels, vector<size_t> indices) {
     }
 }
 
-void Model::setMetric(Metric metric) {
+void Model::setMetric(DistanceMetric metric) {
     metric_ = metric;
 }
 
@@ -330,7 +330,7 @@ double Model::getWidth() const { return grid_->getSize().width; }
 double Model::getHeight() const { return grid_->getSize().height; }
 
 double Model::getTopologicalRadius() const { return grid_->getTopologicalRadius(); }
-Metric Model::getMetric() const { return metric_; }
+DistanceMetric Model::getMetric() const { return metric_; }
 size_t Model::getDataCount() const { return dataCount_; }
 size_t Model::getNodesCount() const { return nodesCount_; }
 size_t Model::getChannelsCount() const { return channelsCount_; }

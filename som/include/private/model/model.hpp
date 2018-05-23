@@ -33,13 +33,13 @@ namespace som {
         bool load(const string &filePath);
         bool save(const string &filePath);
         
-        void prepare(const vector<vector<cl_float>> &data, const Normalization, const Weights);
-        void prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization, const Weights);
+        void prepare(const vector<vector<cl_float>> &data, const Normalization, const InitialWeights);
+        void prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization, const InitialWeights);
         
         cl_float & normalizeVector(const vector<cl_float> &inputVector);
         cl_float & normalizeVector(const uint8_t *inputVector);
         
-        void setMetric(Metric);
+        void setMetric(DistanceMetric);
         void setRandomWeights(const double min, const double max);
         void setLabel(cl_int label, size_t index);
         void setLabels(vector<cl_int> labels, vector<size_t> indices);
@@ -64,19 +64,19 @@ namespace som {
         
         vector<Cell> getCells() const;
         
-        Metric getMetric() const;
+        DistanceMetric getMetric() const;
 
     private:
         bool create();
         bool create(const size_t cols, const size_t rows, const size_t channels, const double hexSize);
         bool create(const size_t radius, const size_t channels, const double hexSize);
         
-        void setWeights(const Weights);
+        void setWeights(const InitialWeights);
         
         Grid *grid_;
         Normalizer *normalizer_;
         
-        Metric metric_;
+        DistanceMetric metric_;
         
         vector<Cell> cells_;
         
