@@ -132,7 +132,7 @@ This example demonstrates various interpretations model view of a trained map us
 
 **Debugging training process**
 
-This example demonstrates the change of map error in the training process. It's important to timely stop training to avoid retrain the model. Observation of the convergence dynamics will help you to justify some learning parameters.
+This example demonstrate dynamics of map error on the expiration of training epochs. It's important to timely stop training to avoid retrain the model. Observation of the convergence dynamics will help you to justify some learning parameters.
 
 <p align="center">
   <img width="800" height="600" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/training%20process/training_process.gif?raw=true">
