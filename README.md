@@ -77,7 +77,7 @@ A simple example of using SOM for regression analysis.
 
 **Image as dataset**
 
-An example of using an image as a data set. After receiving the clustered map from one image, we apply it to clustering another image.
+This example demonstrate using image as a data set. After receiving the clustered map from one image, we apply it to clustering another image.
 
 <p align="center">
   <img width="800" height="531" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/image%20as%20dataset/image_as_dataset_target%20mat.png?raw=true">
