@@ -40,7 +40,7 @@ int main(int argc, const char * argv[]) {
     const auto learningRate = 0.2;
     const auto iterationsCount = 3000;
     const auto step = 10;
-    const auto metric = SQUARED;
+    const auto metric = SSD;
 
     SOM som(CPU);
     som.create(radius, hexSize, channels);

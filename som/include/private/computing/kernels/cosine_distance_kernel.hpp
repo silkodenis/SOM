@@ -8,22 +8,22 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
-*/
+ */
 
-#ifndef taxicab_distance_kernel_hpp
-#define taxicab_distance_kernel_hpp
+#ifndef cosine_distance_kernel_hpp
+#define cosine_distance_kernel_hpp
 
 #include "weight_distance_kernel.hpp"
 
 namespace som {
     
-    class TaxicabDistanceKernel : public WeightDistanceKernel {
+    class CosineDistanceKernel : public WeightDistanceKernel {
         
     public:
-        TaxicabDistanceKernel(cl_context &context, cl_command_queue &commandQueue, cl_device_id &deviceId);
+        CosineDistanceKernel(cl_context &context, cl_command_queue &commandQueue, cl_device_id &deviceId);
         
     };
     
 }
 
-#endif /* taxicab_distance_kernel_hpp */
+#endif /* cosine_distance_kernel_hpp */

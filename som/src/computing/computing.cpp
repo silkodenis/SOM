@@ -14,10 +14,16 @@
 #include "computing.hpp"
 #include "model.hpp"
 #include "topological_distance_kernel.hpp"
-#include "angular_distance_kernel.hpp"
-#include "taxicab_distance_kernel.hpp"
-#include "squared_distance_kernel.hpp"
+#include "sad_distance_kernel.hpp"
+#include "ssd_distance_kernel.hpp"
+#include "mae_distance_kernel.hpp"
+#include "mse_distance_kernel.hpp"
 #include "euclidean_distance_kernel.hpp"
+#include "manhattan_distance_kernel.hpp"
+#include "chebyshev_distance_kernel.hpp"
+#include "minkowski_distance_kernel.hpp"
+#include "canberra_distance_kernel.hpp"
+#include "cosine_distance_kernel.hpp"
 
 using namespace std;
 using namespace som;
@@ -30,31 +36,44 @@ commandQueue_(nullptr),
 inputVectorBuffer_(nullptr),
 weightsBuffer_(nullptr),
 weightDistancesBuffer_(nullptr),
-angularDistanceKernel_(nullptr),
-taxicabDistanceKernel_(nullptr),
+sadDistanceKernel_(nullptr),
+ssdDistanceKernel_(nullptr),
+maeDistanceKernel_(nullptr),
+mseDistanceKernel_(nullptr),
 euclideanDistanceKernel_(nullptr),
-squaredDistanceKernel_(nullptr),
+manhattanDistanceKernel_(nullptr),
+chebyshevDistanceKernel_(nullptr),
+minkowskiDistanceKernel_(nullptr),
+canberraDistanceKernel_(nullptr),
+cosineDistanceKernel_(nullptr),
 pointDistanceKernel_(nullptr) {
-    cl_platform_id platforms;
-    cl_uint num_platforms;
+    cl_platform_id platforms = nullptr;
+    cl_uint num_platforms, num_devices;
     clGetPlatformIDs(1, &platforms, &num_platforms);
     
-    cl_uint num_devices;
-    
+    cl_int clDeviceIDsStatus;
     switch (deviceType) {
-        case CPU:         clGetDeviceIDs(platforms, CL_DEVICE_TYPE_CPU, 1, &deviceId_, &num_devices); break;
-        case GPU:         clGetDeviceIDs(platforms, CL_DEVICE_TYPE_GPU, 1, &deviceId_, &num_devices); break;
-        case ALL_DEVICES: clGetDeviceIDs(platforms, CL_DEVICE_TYPE_ALL, 1, &deviceId_, &num_devices); break;
+        case CPU:         clDeviceIDsStatus = clGetDeviceIDs(platforms, CL_DEVICE_TYPE_CPU, 1, &deviceId_, &num_devices); break;
+        case GPU:         clDeviceIDsStatus = clGetDeviceIDs(platforms, CL_DEVICE_TYPE_GPU, 1, &deviceId_, &num_devices); break;
+        case ALL_DEVICES: clDeviceIDsStatus = clGetDeviceIDs(platforms, CL_DEVICE_TYPE_ALL, 1, &deviceId_, &num_devices); break;
     }
+    
+    assert(clDeviceIDsStatus == CL_SUCCESS);
     
     context_ = clCreateContext(nullptr, 1, &deviceId_, nullptr, nullptr, nullptr);
     commandQueue_ = clCreateCommandQueue(context_, deviceId_, 0, nullptr);
     
     pointDistanceKernel_ = new TopologicalDistanceKernel(context_, commandQueue_, deviceId_);
-    angularDistanceKernel_ = new AngularDistanceKernel(context_, commandQueue_, deviceId_);
-    taxicabDistanceKernel_ = new TaxicabDistanceKernel(context_, commandQueue_, deviceId_);
+    sadDistanceKernel_ = new SADDistanceKernel(context_, commandQueue_, deviceId_);
+    ssdDistanceKernel_ = new SSDDistanceKernel(context_, commandQueue_, deviceId_);
+    maeDistanceKernel_ = new MAEDistanceKernel(context_, commandQueue_, deviceId_);
+    mseDistanceKernel_ = new MSEDistanceKernel(context_, commandQueue_, deviceId_);
     euclideanDistanceKernel_ = new EuclideanDistanceKernel(context_, commandQueue_, deviceId_);
-    squaredDistanceKernel_ = new SquaredDistanceKernel(context_, commandQueue_, deviceId_);
+    manhattanDistanceKernel_ = new ManhattanDistanceKernel(context_, commandQueue_, deviceId_);
+    chebyshevDistanceKernel_ = new ChebyshevDistanceKernel(context_, commandQueue_, deviceId_);
+    canberraDistanceKernel_ = new CanberraDistanceKernel(context_, commandQueue_, deviceId_);
+    cosineDistanceKernel_ = new CosineDistanceKernel(context_, commandQueue_, deviceId_);
+    minkowskiDistanceKernel_ = new MinkowskiDistanceKernel(context_, commandQueue_, deviceId_, deviceType);
     
     auto channels = model_.getChannelsCount();
     auto nodesCount = model_.getNodesCount();
@@ -66,18 +85,30 @@ pointDistanceKernel_(nullptr) {
     weightDistancesBuffer_ = clCreateBuffer(context_, CL_MEM_READ_ONLY, nodesCount * sizeof(cl_float), nullptr, nullptr);
     
     pointDistanceKernel_->connect(model_);
-    angularDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
-    taxicabDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
+    sadDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
+    ssdDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
+    maeDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
+    mseDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
     euclideanDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
-    squaredDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
+    manhattanDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
+    chebyshevDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
+    minkowskiDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
+    canberraDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
+    cosineDistanceKernel_->connect(model_, inputVectorBuffer_, weightsBuffer_, weightDistancesBuffer_);
 }
 
 Computing::~Computing() {
     delete pointDistanceKernel_;
-    delete angularDistanceKernel_;
-    delete taxicabDistanceKernel_;
+    delete sadDistanceKernel_;
+    delete ssdDistanceKernel_;
+    delete maeDistanceKernel_;
+    delete mseDistanceKernel_;
     delete euclideanDistanceKernel_;
-    delete squaredDistanceKernel_;
+    delete manhattanDistanceKernel_;
+    delete chebyshevDistanceKernel_;
+    delete minkowskiDistanceKernel_;
+    delete canberraDistanceKernel_;
+    delete cosineDistanceKernel_;
     
     clReleaseMemObject(inputVectorBuffer_);
     clReleaseMemObject(weightsBuffer_);
@@ -96,10 +127,16 @@ size_t Computing::bmuIndex(const cl_float &inputVector, bool accumulateDistances
     auto metric = model_.getMetric();
     
     switch (metric) {
+        case SAD: sadDistanceKernel_->compute(inputVector); break;
+        case SSD: ssdDistanceKernel_->compute(inputVector); break;
+        case MAE: maeDistanceKernel_->compute(inputVector); break;
+        case MSE: mseDistanceKernel_->compute(inputVector); break;
         case EUCLIDEAN: euclideanDistanceKernel_->compute(inputVector); break;
-        case SQUARED: squaredDistanceKernel_->compute(inputVector); break;
-        case TAXICAB: taxicabDistanceKernel_->compute(inputVector); break;
-        case ANGULAR: angularDistanceKernel_->compute(inputVector); break;
+        case MANHATTAN: manhattanDistanceKernel_->compute(inputVector); break;
+        case CHEBYSHEV: chebyshevDistanceKernel_->compute(inputVector); break;
+        case MINKOWSKI: minkowskiDistanceKernel_->compute(inputVector); break;
+        case CANBERRA: canberraDistanceKernel_->compute(inputVector); break;
+        case COSINE: cosineDistanceKernel_->compute(inputVector); break;
     }
     
     cl_float *distancesAcumulator = &model_.getDistancesAccumulator();

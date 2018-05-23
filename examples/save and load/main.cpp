@@ -47,7 +47,7 @@ int main(int argc, const char * argv[]) {
     som.create(cols, rows, hexSize, channels);
     som.prepare(data, NO_NORM, RANDOM_FROM_DATA);
     som.setRandomWeights(0, 0.001);
-    som.train(iterationsCount, learningRate, TAXICAB);
+    som.train(iterationsCount, learningRate, SAD);
 
     // Show trained map
     namedWindow(SAVED_MAP_WINDOW_NAME); moveWindow(SAVED_MAP_WINDOW_NAME, 260, 30);

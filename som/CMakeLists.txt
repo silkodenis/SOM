@@ -25,11 +25,17 @@ src/model/grid/hex.cpp
 src/model/grid/hexagon_grid.cpp
 src/model/grid/rectangle_grid.cpp
 src/computing/computing.cpp
-src/computing/kernels/angular_distance_kernel.cpp
-src/computing/kernels/euclidean_distance_kernel.cpp
 src/computing/kernels/kernel.cpp
-src/computing/kernels/squared_distance_kernel.cpp
-src/computing/kernels/taxicab_distance_kernel.cpp
+src/computing/kernels/sad_distance_kernel.cpp
+src/computing/kernels/ssd_distance_kernel.cpp
+src/computing/kernels/mae_distance_kernel.cpp
+src/computing/kernels/mse_distance_kernel.cpp
+src/computing/kernels/euclidean_distance_kernel.cpp
+src/computing/kernels/manhattan_distance_kernel.cpp
+src/computing/kernels/chebyshev_distance_kernel.cpp
+src/computing/kernels/minkowski_distance_kernel.cpp
+src/computing/kernels/canberra_distance_kernel.cpp
+src/computing/kernels/cosine_distance_kernel.cpp
 src/computing/kernels/topological_distance_kernel.cpp
 src/computing/kernels/weight_distance_kernel.cpp)
 
@@ -46,11 +52,17 @@ include/private/model/grid/hex.hpp
 include/private/model/grid/hexagon_grid.hpp
 include/private/model/grid/rectangle_grid.hpp
 include/private/computing/computing.hpp
-include/private/computing/kernels/angular_distance_kernel.hpp
-include/private/computing/kernels/euclidean_distance_kernel.hpp
 include/private/computing/kernels/kernel.hpp
-include/private/computing/kernels/squared_distance_kernel.hpp
-include/private/computing/kernels/taxicab_distance_kernel.hpp
+include/private/computing/kernels/sad_distance_kernel.hpp
+include/private/computing/kernels/ssd_distance_kernel.hpp
+include/private/computing/kernels/mae_distance_kernel.hpp
+include/private/computing/kernels/mse_distance_kernel.hpp
+include/private/computing/kernels/euclidean_distance_kernel.hpp
+include/private/computing/kernels/manhattan_distance_kernel.hpp
+include/private/computing/kernels/chebyshev_distance_kernel.hpp
+include/private/computing/kernels/minkowski_distance_kernel.hpp
+include/private/computing/kernels/canberra_distance_kernel.hpp
+include/private/computing/kernels/cosine_distance_kernel.hpp
 include/private/computing/kernels/topological_distance_kernel.hpp
 include/private/computing/kernels/weight_distance_kernel.hpp)
 

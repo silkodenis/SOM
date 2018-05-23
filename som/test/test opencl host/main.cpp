@@ -16,31 +16,61 @@
 #ifdef __APPLE__
 #include <OpenCL/OpenCL.h>
 #else
+#define CL_USE_DEPRECATED_OPENCL_1_2_APIS
 #include <CL/cl.h>
 #endif
 
-int main(int argc, const char * argv[]) {
+bool test(cl_device_type) {
+    bool result = false;
     
-    cl_platform_id platforms;
+    cl_platform_id platforms = nullptr;
     cl_uint num_platforms;
     clGetPlatformIDs(1, &platforms, &num_platforms);
     
     cl_uint num_devices;
-    cl_device_id deviceId;
-    clGetDeviceIDs(platforms, CL_DEVICE_TYPE_ALL, 1, &deviceId, &num_devices);
+    cl_device_id deviceId = nullptr;
+    
+    result = clGetDeviceIDs(platforms, CL_DEVICE_TYPE_ALL, 1, &deviceId, &num_devices) == CL_SUCCESS;
     
     cl_int error = 0;
-    cl_context context = clCreateContext(nullptr, 1, &deviceId, nullptr, nullptr, &error);
+    cl_context context = nullptr;
+    context = clCreateContext(nullptr, 1, &deviceId, nullptr, nullptr, &error);
     
-    assert(error == 0);
+    if (result) {
+        assert(error == 0);
+    }
     
-    __unused cl_command_queue commandQueue = clCreateCommandQueue(context, deviceId, 0, &error);
+    cl_command_queue commandQueue = nullptr;
+    commandQueue = clCreateCommandQueue(context, deviceId, 0, &error);
+
+    if (result) {
+        assert(error == 0);
+    }
     
-    assert(error == 0);
+    if (commandQueue) {
+        clReleaseCommandQueue(commandQueue);
+    }
     
-    clReleaseCommandQueue(commandQueue);
-    clReleaseDevice(deviceId);
-    clReleaseContext(context);
+    if (deviceId) {
+        clReleaseDevice(deviceId);
+    }
+    
+    if (context) {
+        clReleaseContext(context);
+    }
+    
+    return result;
+}
+
+int main(int argc, const char * argv[]) {
+    
+    bool testResult;
+    
+    testResult = test(CL_DEVICE_TYPE_CPU);
+    testResult = test(CL_DEVICE_TYPE_GPU);
+    testResult = test(CL_DEVICE_TYPE_ALL);
+    
+    assert(testResult);
     
     return 0;
 }

@@ -65,25 +65,10 @@ int main(int argc, const char * argv[]) {
 
     Computing computing(model, ALL_DEVICES);
     
-    model.setMetric(ANGULAR);
+    model.setMetric(SAD);
     computing.bmuIndex(*inputVector.data(), false);
     
-    test(model, { // expected angular distances
-        0.467379,
-        0.32034,
-        0.746025,
-        0.330409,
-        1.01348,
-        0.0796393,
-        0.639088,
-        0.822251,
-        0.469046
-    });
-    
-    model.setMetric(TAXICAB);
-    computing.bmuIndex(*inputVector.data(), false);
-    
-    test(model, { // expected taxicab distances
+    test(model, { // expected SAD distances
         0.596,
         0.7,
         1.258,
@@ -94,11 +79,11 @@ int main(int argc, const char * argv[]) {
         1.249,
         0.7
     });
-    
-    model.setMetric(SQUARED);
+   
+    model.setMetric(SSD);
     computing.bmuIndex(*inputVector.data(), false);
     
-    test(model, { // expected squared distances
+    test(model, { // expected SSD distances
         0.321198,
         0.309992,
         0.582938,
@@ -110,10 +95,40 @@ int main(int argc, const char * argv[]) {
         0.300846
     });
     
+    model.setMetric(MAE);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected MAE distances
+        0.198667,
+        0.233333,
+        0.419333,
+        0.218333,
+        0.529333,
+        0.0826667,
+        0.338333,
+        0.416333,
+        0.233333
+    });
+    
+    model.setMetric(MSE);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected MSE distances
+        0.107066,
+        0.103331,
+        0.194313,
+        0.0551897,
+        0.365147,
+        0.008952,
+        0.140586,
+        0.2126,
+        0.100282
+    });
+    
     model.setMetric(EUCLIDEAN);
     computing.bmuIndex(*inputVector.data(), false);
     
-    test(model, { // expected euclidean distances
+    test(model, { // expected EUCLIDEAN distances
         0.566743,
         0.556769,
         0.763504,
@@ -123,6 +138,81 @@ int main(int argc, const char * argv[]) {
         0.649428,
         0.798625,
         0.548494
+    });
+    
+    model.setMetric(MANHATTAN);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected MANHATTAN distances
+        0.596,
+        0.7,
+        1.258,
+        0.655,
+        1.588,
+        0.248,
+        1.015,
+        1.249,
+        0.7
+    });
+    
+    model.setMetric(CHEBYSHEV);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected CHEBYSHEV distances
+        0.566,
+        0.546,
+        0.611,
+        0.287,
+        0.776,
+        0.146,
+        0.506,
+        0.696,
+        0.533
+    });
+    
+    model.setMetric(MINKOWSKI);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected MINKOWSKI distances
+        0.566025,
+        0.547024,
+        0.666529,
+        0.35476,
+        0.928469,
+        0.150798,
+        0.575037,
+        0.724208,
+        0.535184
+    });
+    
+    model.setMetric(CANBERRA);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected CANBERRA distances
+        0.501184,
+        0.704516,
+        1.30874,
+        0.666055,
+        1.43797,
+        0.236828,
+        0.881288,
+        1.21228,
+        0.712419
+    });
+    
+    model.setMetric(COSINE);
+    computing.bmuIndex(*inputVector.data(), false);
+    
+    test(model, { // expected COSINE distances
+        0.107248,
+        0.0508716,
+        0.265607,
+        0.0540903,
+        0.471089,
+        0.00316954,
+        0.19736,
+        0.319426,
+        0.108
     });
     
     return 0;

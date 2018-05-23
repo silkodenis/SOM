@@ -8,22 +8,23 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
-*/
+ */
 
-#ifndef angular_distance_kernel_hpp
-#define angular_distance_kernel_hpp
+#ifndef minkowski_distance_kernel_hpp
+#define minkowski_distance_kernel_hpp
 
 #include "weight_distance_kernel.hpp"
+#include "som_types.hpp"
 
 namespace som {
     
-    class AngularDistanceKernel : public WeightDistanceKernel {
+    class MinkowskiDistanceKernel : public WeightDistanceKernel {
         
     public:
-        AngularDistanceKernel(cl_context &context, cl_command_queue &commandQueue, cl_device_id &deviceId);
+        MinkowskiDistanceKernel(cl_context &context, cl_command_queue &commandQueue, cl_device_id &deviceId, Device);
         
     };
     
 }
 
-#endif /* angular_distance_kernel_hpp */
+#endif /* minkowski_distance_kernel_hpp */

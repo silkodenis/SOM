@@ -8,7 +8,7 @@ Required Packages:
 * `Git`
 
 Required Dependencies:
-* `OpenCL 1.1 ` or higher 
+* `OpenCL 1.2 ` or higher 
 * `OpenCV 3` [optional] (for build view and examples)
 
 These steps have been tested for macOS High Sierra 10.13.14 but should work with other unix-based systems as well.

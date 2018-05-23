@@ -22,10 +22,16 @@ namespace som {
     class Model;
     
     class TopologicalDistanceKernel;
-    class TaxicabDistanceKernel;
-    class AngularDistanceKernel;
+    class SADDistanceKernel;
+    class SSDDistanceKernel;
+    class MAEDistanceKernel;
+    class MSEDistanceKernel;
     class EuclideanDistanceKernel;
-    class SquaredDistanceKernel;
+    class ManhattanDistanceKernel;
+    class ChebyshevDistanceKernel;
+    class MinkowskiDistanceKernel;
+    class CanberraDistanceKernel;
+    class CosineDistanceKernel;
     
     class Computing {
         
@@ -50,10 +56,16 @@ namespace som {
         cl_mem weightsBuffer_;
         cl_mem weightDistancesBuffer_;
         
-        AngularDistanceKernel *angularDistanceKernel_;
-        TaxicabDistanceKernel *taxicabDistanceKernel_;
+        SADDistanceKernel *sadDistanceKernel_;
+        SSDDistanceKernel *ssdDistanceKernel_;
+        MAEDistanceKernel *maeDistanceKernel_;
+        MSEDistanceKernel *mseDistanceKernel_;
         EuclideanDistanceKernel *euclideanDistanceKernel_;
-        SquaredDistanceKernel *squaredDistanceKernel_;
+        ManhattanDistanceKernel *manhattanDistanceKernel_;
+        ChebyshevDistanceKernel *chebyshevDistanceKernel_;
+        MinkowskiDistanceKernel *minkowskiDistanceKernel_;
+        CanberraDistanceKernel *canberraDistanceKernel_;
+        CosineDistanceKernel *cosineDistanceKernel_;
         TopologicalDistanceKernel *pointDistanceKernel_;
     };
     

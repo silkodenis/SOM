@@ -8,22 +8,22 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
-*/
+ */
 
-#ifndef squared_distance_kernel_hpp
-#define squared_distance_kernel_hpp
+#ifndef canberra_distance_kernel_hpp
+#define canberra_distance_kernel_hpp
 
 #include "weight_distance_kernel.hpp"
 
 namespace som {
     
-    class SquaredDistanceKernel : public WeightDistanceKernel {
+    class CanberraDistanceKernel : public WeightDistanceKernel {
         
     public:
-        SquaredDistanceKernel(cl_context &context, cl_command_queue &commandQueue, cl_device_id &deviceId);
+        CanberraDistanceKernel(cl_context &context, cl_command_queue &commandQueue, cl_device_id &deviceId);
         
     };
     
 }
 
-#endif /* squared_distance_kernel_hpp */
+#endif /* canberra_distance_kernel_hpp */
