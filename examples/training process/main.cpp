@@ -69,7 +69,6 @@ void showTrainingProcess(SOM &som, const size_t iterationsCount, const double le
     const Scalar axisColor(BLACK_COLOR);
     const Scalar errorColor(RED_COLOR);
     const Scalar diffColor(CORAL_COLOR);
-    const Scalar gridColor3(WHITE_COLOR * 0.60);
     const Scalar fontColor(BLACK_COLOR);
     
     const Point origin(horizontalOffset, verticalOffset + heightGraph);
@@ -131,13 +130,9 @@ void showTrainingProcess(SOM &som, const size_t iterationsCount, const double le
                  Point2f(offsets[j], origin.y - diffs[j] / maxDiff * heightGraph), diffColor, graphThickness);
         }
         
-        // Sliding axle
-        line(result, Point2f(offsets[offsets.size() - 1], verticalOffset),
-             Point2f(offsets[offsets.size() - 1], verticalOffset + heightGraph), gridColor3, 1);
-        
         // Show graph
         imshow(TRAINING_PROCESS_WINDOW_NAME, result);
-
+        
         waitKey(1);
     }
 }
