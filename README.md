@@ -130,7 +130,7 @@ This example demonstrates various interpretations model view of a trained map us
   <img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
 </p>
 
-**Debugging training**
+**Debugging training process**
 
 This example demonstrates the change of map error in the training process. It's important to timely stop training to avoid retrain the model. Observation of the convergence dynamics will help you to justify some learning parameters.
 
