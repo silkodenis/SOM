@@ -259,7 +259,7 @@ void Model::prepare(const uint8_t *pixelBuffer, const size_t lenght, const Norma
 
 void Model::setWeights(const InitialWeights initialWeights) {
     switch (initialWeights) {
-        case RANDOM_01:
+        case RANDOM_0_1:
             setRandomWeights(0, 1);
             break;
             

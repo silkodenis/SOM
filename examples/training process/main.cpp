@@ -44,7 +44,7 @@ int main(int argc, const char * argv[]) {
 
     SOM som(CPU);
     som.create(radius, hexSize, channels);
-    som.prepare(data, NO_NORM, RANDOM_01);
+    som.prepare(data, NO_NORM, RANDOM_0_1);
     
     showTrainingProcess(som, iterationsCount, learningRate, step, metric);
     
