@@ -37,7 +37,7 @@ namespace som {
     enum InitialWeights { RANDOM_0_1, RANDOM_FROM_DATA };
 
     enum DistanceMetric {
-        EUCLIDEAN, // Euclidean Distance
+        EUCLIDEAN, // Euclidean Distance, is a classic metric for many solutions
         MANHATTAN, // Manhattan Distance, a special case of the Minkowski distance with p=1 and equivalent to the SAD
         CHEBYSHEV, // Chebyshev Distance, a special case of the Minkowski distance where p goes to infinity
         MINKOWSKI, // Minkowski Distance with p=3
