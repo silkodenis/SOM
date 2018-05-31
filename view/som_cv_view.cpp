@@ -32,7 +32,7 @@ namespace som {
     extern vector<float> reduceVector(const Cell &cell, const size_t vectorDimensionality, const size_t targetDimensionality, const bool gradient);
 }
 
-void som::drawCell(cv::Mat &dst, const Cell &cell, const Scalar color) {
+void som::drawCell(cv::Mat &dst, const Cell &cell, const Scalar color, const LineTypes lineType) {
     cv::Point points[HEXAGON_CORNERS_COUNT] = {
         cv::Point2f(cell.corners[0], cell.corners[1]),
         cv::Point2f(cell.corners[2], cell.corners[3]),
@@ -44,7 +44,7 @@ void som::drawCell(cv::Mat &dst, const Cell &cell, const Scalar color) {
     
     const cv::Point *elementPoints[1] = {points};
     
-    cv::fillPoly(dst, elementPoints, &HEXAGON_CORNERS_COUNT, 1, color, 8);
+    cv::fillPoly(dst, elementPoints, &HEXAGON_CORNERS_COUNT, 1, color, lineType);
 }
 
 void som::drawGrid(cv::Mat &dst, const Cell &cell, const cv::Scalar color) {
@@ -98,7 +98,7 @@ cv::Mat som::drawSingleChannelMap(const SOM& som,
                     break;
             }
             
-            drawCell(result, cells[i], nodeColor);
+            drawCell(result, cells[i], nodeColor, grid ? LINE_8 : LINE_AA);
         }
         
         if (grid) {
@@ -139,7 +139,7 @@ cv::Mat som::draw3DMap(const SOM& som, const bool grid, const bool onlyActive,
                 nodeColor = Scalar(weights[i][0] * 255, 0, 0);
             }
             
-            drawCell(result, cells[i], nodeColor);
+            drawCell(result, cells[i], nodeColor, grid ? LINE_8 : LINE_AA);
         }
         
         if (grid) {
@@ -184,7 +184,7 @@ cv::Mat som::drawApproximationMap(const SOM &som, const GradientColors colors, c
                 break;
         }
         
-        drawCell(result, cells[i], nodeColor);
+        drawCell(result, cells[i], nodeColor, grid ? LINE_8 : LINE_AA);
         
         if (grid) {
             drawGrid(result, cells[i], GRID_COLOR);
@@ -231,7 +231,7 @@ extern cv::Mat som::drawDistancesMap(const SOM &som,
                 break;
         }
         
-        drawCell(result, cells[i], nodeColor);
+        drawCell(result, cells[i], nodeColor, grid ? LINE_8 : LINE_AA);
         
         if (grid) {
             drawGrid(result, cells[i], GRID_COLOR);
@@ -286,7 +286,7 @@ extern cv::Mat som::draw1DMap(const SOM &som,
                     break;
             }
             
-            drawCell(result, cells[i], nodeColor);
+            drawCell(result, cells[i], nodeColor, grid ? LINE_8 : LINE_AA);
         }
         
         if (grid) {

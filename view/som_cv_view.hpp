@@ -38,7 +38,7 @@ namespace som {
         HUE
     };
     
-    void drawCell(cv::Mat &dst, const Cell &cell, const cv::Scalar color);
+    void drawCell(cv::Mat &dst, const Cell &cell, const cv::Scalar color, const cv::LineTypes lineType = cv::LINE_8);
     void drawGrid(cv::Mat &dst, const Cell &cell, const cv::Scalar color);
     
     extern cv::Mat draw3DMap(const SOM &som,
