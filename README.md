@@ -7,7 +7,7 @@ Required Packages:
 * `CMake 2.8` or higher
 * `Git`
 
-Required Dependencies:
+Dependencies:
 * `OpenCL 1.2 ` or higher 
 * `OpenCV 3` [optional] (for build view and examples)
 
