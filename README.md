@@ -111,22 +111,28 @@ A simple example of analyzing the channels of a trained map.
 This example demonstrates various interpretations model view of a trained map using the additional library som_view.
 
 <p align="center">
+<a>Convolution maps, 3D + 1D</a><br>
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/convolution%203d%20+%201d.png?raw=true">
 </p>
 
 <p align="center">
+<a>Distances map. Two various colormap</a><br>
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/distances.png?raw=true">
 </p>
 
 <p align="center">
+<a>Maps from only active nodes</a><br>
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/actives%20only%203d%20+%201d.png?raw=true">
 </p>
 
 <p align="center">
+<a>Approximation map. Based on the number of neurons activation. Two various colormap</a><br>
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/approximation%20gradient%20+%20hue.png?raw=true">
 </p>
 
-<p align="center">
+**Single channel analysis**
+  
+<p align="center">  
 <img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
 </p>
 
