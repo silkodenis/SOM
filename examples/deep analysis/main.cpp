@@ -72,8 +72,8 @@ int main(int argc, const char * argv[]) {
     // Distances maps
     allMaps.clear();
     allMapsMat.release();
-    allMaps.push_back(drawDistancesMap(som, GRADIENT_SKY_BLUE_TO_PINK));
-    allMaps.push_back(drawDistancesMap(som, GRADIENT_JET));
+    allMaps.push_back(drawDistancesMap(som, GRADIENT_SKY_BLUE_TO_PINK, true));
+    allMaps.push_back(drawDistancesMap(som, GRADIENT_JET, false));
     hconcat(allMaps, allMapsMat);
     
     namedWindow(DISTANCES_MAP_WINDOW_NAME);
@@ -95,7 +95,7 @@ int main(int argc, const char * argv[]) {
     allMaps.clear();
     allMapsMat.release();
     allMaps.push_back(draw3DMap(som));
-    allMaps.push_back(draw1DMap(som, GRADIENT_PARULA));
+    allMaps.push_back(draw1DMap(som, GRADIENT_WINTER));
     hconcat(allMaps, allMapsMat);
 
     namedWindow(CONVOLUTION_MAP_WINDOW_NAME);

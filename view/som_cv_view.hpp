@@ -63,20 +63,21 @@ namespace som {
                              const cv::Scalar backgroundColor = WHITE_COLOR);
     
     extern cv::Mat draw1DMap(const SOM &som,
-                             const GradientMap colors = GRADIENT_SKY_BLUE_TO_PINK,
+                             const GradientMap colors = GRADIENT_PARULA,
                              const bool grid = false,
                              const bool onlyActive = false,
                              const cv::Scalar backgroundColor = WHITE_COLOR);
     
     extern cv::Mat drawSingleChannelMap(const SOM &som,
                                         const size_t channel,
-                                        const GradientMap colors = GRADIENT_SKY_BLUE_TO_PINK,
+                                        const GradientMap colors = GRADIENT_JET,
                                         const bool grid = false,
                                         const bool onlyActive = false,
                                         const cv::Scalar backgroundColor = WHITE_COLOR);
     
     extern cv::Mat drawDistancesMap(const SOM &som,
-                                    const GradientMap colors = GRADIENT_SKY_BLUE_TO_PINK,
+                                    const GradientMap colors = GRADIENT_JET,
+                                    const bool inverse = false,
                                     const bool grid = false,
                                     const cv::Scalar backgroundColor = WHITE_COLOR);
 

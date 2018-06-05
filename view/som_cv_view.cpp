@@ -165,6 +165,7 @@ cv::Mat som::drawApproximationMap(const SOM &som, const GradientMap colors, cons
 
 extern cv::Mat som::drawDistancesMap(const SOM &som,
                                      const GradientMap colors,
+                                     const bool inverse,
                                      const bool grid,
                                      const Scalar backgroundColor) {
     Mat result(som.getHeight(), som.getWidth(), CV_8UC3, backgroundColor);
@@ -180,7 +181,11 @@ extern cv::Mat som::drawDistancesMap(const SOM &som,
 
     for (size_t i = 0; i < cells.size(); i++) {
     
-        float value = 255 - values[i][0] * 255;
+        float value = values[i][0] * 255;
+        
+        if (inverse) {
+            value = 255 - value;
+        }
         
         Scalar nodeColor = computeCellColor(value, colors);
 

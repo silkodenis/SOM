@@ -47,9 +47,9 @@ int main(int argc, const char * argv[]) {
     
     // Draw single channel maps
     vector<Mat> singleChannelMaps {
-        drawSingleChannelMap(som, 0, GRADIENT_JET),
-        drawSingleChannelMap(som, 1, GRADIENT_JET),
-        drawSingleChannelMap(som, 2, GRADIENT_JET)
+        drawSingleChannelMap(som, 0, GRADIENT_PARULA),
+        drawSingleChannelMap(som, 1, GRADIENT_PARULA),
+        drawSingleChannelMap(som, 2, GRADIENT_PARULA)
     };
     
     // Concatenate maps
