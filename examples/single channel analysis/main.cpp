@@ -40,26 +40,26 @@ int main(int argc, const char * argv[]) {
     const auto learningRate = 0.1;
     const auto iterationsCount = 5000;
     
-    SOM som(GPU);
+    SOM som(CPU);
     som.create(radius, hexSize, channels);
     som.prepare(data, MINMAX_BY_COLUMNS, RANDOM_FROM_DATA);
     som.train(iterationsCount, learningRate);
     
     // Draw single channel maps
-    vector<Mat> hueMaps {
-        drawSingleChannelMap(som, 0, HUE),
-        drawSingleChannelMap(som, 1, HUE),
-        drawSingleChannelMap(som, 2, HUE)
+    vector<Mat> singleChannelMaps {
+        drawSingleChannelMap(som, 0, GRADIENT_JET),
+        drawSingleChannelMap(som, 1, GRADIENT_JET),
+        drawSingleChannelMap(som, 2, GRADIENT_JET)
     };
     
     // Concatenate maps
-    Mat hueMapsMat;
-    hconcat(hueMaps, hueMapsMat);
+    Mat allMaps;
+    hconcat(singleChannelMaps, allMaps);
     
     // Draw and show single channel maps
     namedWindow(SINGLE_CHANNEL_MAPS_WINDOW_NAME);
     moveWindow(SINGLE_CHANNEL_MAPS_WINDOW_NAME, 90, 100);
-    imshow(SINGLE_CHANNEL_MAPS_WINDOW_NAME, hueMapsMat);
+    imshow(SINGLE_CHANNEL_MAPS_WINDOW_NAME, allMaps);
     
     // Draw and show three-channel map
     namedWindow(THREE_CHANNEL_MAPS_WINDOW_NAME);

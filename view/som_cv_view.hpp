@@ -27,15 +27,31 @@ namespace som {
     static const cv::Scalar BLUE_COLOR(255, 0, 0);
     static const cv::Scalar YELLOW_COLOR(0, 255, 255);
     
-    enum GradientColors {
-        DARK_ORANGE_TO_BLUE = 0,
-        SKY_BLUE_TO_PINK,
-        SKY_BLUE_TO_YELLOW,
-        SKY_BLUE_TO_RED,
-        BLUE_TO_YELLOW,
-        GREEN_TO_PINK,
-        BLACK_TO_WHITE,
-        HUE
+    enum GradientMap {
+        // Simple and fastest colormaps
+        GRADIENT_DARK_ORANGE_TO_BLUE = 0,
+        GRADIENT_SKY_BLUE_TO_PINK,
+        GRADIENT_SKY_BLUE_TO_YELLOW,
+        GRADIENT_SKY_BLUE_TO_RED,
+        GRADIENT_BLUE_TO_YELLOW,
+        GRADIENT_GREEN_TO_PINK,
+        GRADIENT_BLACK_TO_WHITE,
+        GRADIENT_HUE,
+        
+        // MATLAB equivalent colormaps. Not as effective as simple gradients, but very useful for analysis.
+        GRADIENT_AUTUMN,
+        GRADIENT_BONE,
+        GRADIENT_JET,
+        GRADIENT_WINTER,
+        GRADIENT_RAINBOW,
+        GRADIENT_OCEAN,
+        GRADIENT_SUMMER,
+        GRADIENT_SPRING,
+        GRADIENT_COOL,
+        GRADIENT_HSV,
+        GRADIENT_PINK,
+        GRADIENT_HOT,
+        GRADIENT_PARULA
     };
     
     void drawCell(cv::Mat &dst, const Cell &cell, const cv::Scalar color, const cv::LineTypes lineType = cv::LINE_8);
@@ -47,28 +63,27 @@ namespace som {
                              const cv::Scalar backgroundColor = WHITE_COLOR);
     
     extern cv::Mat draw1DMap(const SOM &som,
-                             const GradientColors colors = SKY_BLUE_TO_PINK,
+                             const GradientMap colors = GRADIENT_SKY_BLUE_TO_PINK,
                              const bool grid = false,
                              const bool onlyActive = false,
                              const cv::Scalar backgroundColor = WHITE_COLOR);
     
     extern cv::Mat drawSingleChannelMap(const SOM &som,
                                         const size_t channel,
-                                        const GradientColors colors = SKY_BLUE_TO_PINK,
+                                        const GradientMap colors = GRADIENT_SKY_BLUE_TO_PINK,
                                         const bool grid = false,
                                         const bool onlyActive = false,
                                         const cv::Scalar backgroundColor = WHITE_COLOR);
     
     extern cv::Mat drawDistancesMap(const SOM &som,
-                                    const GradientColors colors = SKY_BLUE_TO_PINK,
+                                    const GradientMap colors = GRADIENT_SKY_BLUE_TO_PINK,
                                     const bool grid = false,
                                     const cv::Scalar backgroundColor = WHITE_COLOR);
-    
+
     extern cv::Mat drawApproximationMap(const SOM &som,
-                                        const GradientColors colors = HUE,
+                                        const GradientMap colors = GRADIENT_HUE,
                                         const bool grid = false,
                                         const cv::Scalar backgroundColor = WHITE_COLOR);
-    
 }
 
 #endif /* som_cv_draw_hpp */

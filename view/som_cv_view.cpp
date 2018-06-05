@@ -26,6 +26,8 @@ namespace som {
     static const Scalar GRID_COLOR(BLACK_COLOR);
     static const Scalar CIRCLE_COLOR(RED_COLOR);
     
+    extern Scalar computeCellColor(const float value, const GradientMap gradientMap);
+    
     extern void minmaxByRows(vector<vector<float>> &dst);
     extern void minmaxByCols(vector<vector<float>> &dst);
     extern vector<vector<float>> reduceDimensionality(const SOM &som, const size_t dimensionality, const bool gradient);
@@ -58,54 +60,37 @@ void som::drawGrid(cv::Mat &dst, const Cell &cell, const cv::Scalar color) {
 
 cv::Mat som::drawSingleChannelMap(const SOM& som,
                                   const size_t channel,
-                                  const GradientColors colors,
+                                  const GradientMap colors,
                                   const bool grid,
                                   const bool onlyActive,
                                   const Scalar backgroundColor) {
     Mat result(som.getHeight(), som.getWidth(), CV_8UC3, backgroundColor);
-    
+
     auto cells = som.getCells();
-    
+
     vector<vector<float>> values;
     for (size_t i = 0; i < cells.size(); i++) {
         values.push_back({cells[i].weights[channel]});
     }
-    
+
     minmaxByCols(values);
-    
+
     for (auto i = 0; i < cells.size(); i++) {
         bool canDrawNode = (onlyActive && cells[i].state[0]) || !onlyActive;
-        
+
         if (canDrawNode) {
-            Scalar nodeColor;
-            
             float value = values[i][0] * 255;
             
-            switch (colors) {
-                case SKY_BLUE_TO_PINK: nodeColor = Scalar(255, 255 - value, value); break;
-                case SKY_BLUE_TO_YELLOW: nodeColor = Scalar(value, 255, 255 - value); break;
-                case SKY_BLUE_TO_RED: nodeColor = Scalar(value, value, 255 - value); break;
-                case DARK_ORANGE_TO_BLUE: nodeColor = Scalar(value, 0, 255 - value); break;
-                case GREEN_TO_PINK: nodeColor = Scalar(255 - value, value, 255 - value); break;
-                case BLUE_TO_YELLOW: nodeColor = Scalar(value, 255 - value, 255 - value); break;
-                case BLACK_TO_WHITE: nodeColor = Scalar(value, value, value); break;
-                case HUE:
-                    Mat3b bgr;
-                    Mat3b hsv(cv::Vec3b(value, 255, 255));
-                    cvtColor(hsv, bgr, CV_HSV2RGB);
-                    
-                    nodeColor = Scalar(bgr(0));
-                    break;
-            }
-            
+            Scalar nodeColor = computeCellColor(value, colors);
+
             drawCell(result, cells[i], nodeColor, grid ? LINE_8 : LINE_AA);
         }
-        
+
         if (grid) {
             drawGrid(result, cells[i], GRID_COLOR);
         }
     }
-    
+
     return result;
 }
 
@@ -150,154 +135,143 @@ cv::Mat som::draw3DMap(const SOM& som, const bool grid, const bool onlyActive,
     return result;
 }
 
-cv::Mat som::drawApproximationMap(const SOM &som, const GradientColors colors, const bool grid, const Scalar backgroundColor) {
+cv::Mat som::drawApproximationMap(const SOM &som, const GradientMap colors, const bool grid, const Scalar backgroundColor) {
     Mat result(som.getHeight(), som.getWidth(), CV_8UC3, backgroundColor);
-    
+
     auto cells = som.getCells();
-    
+
     vector<vector<float>> values;
     for (size_t i = 0; i < cells.size(); i++) {
         values.push_back({(float)cells[i].state[0]});
     }
-    
+
     minmaxByCols(values);
-    
+
     for (size_t i = 0; i < cells.size(); i++) {
-        Scalar nodeColor;
         
         float value = values[i][0] * 255;
         
-        switch (colors) {
-            case SKY_BLUE_TO_PINK: nodeColor = Scalar(255, 255 - value, value); break;
-            case SKY_BLUE_TO_YELLOW: nodeColor = Scalar(value, 255, 255 - value); break;
-            case SKY_BLUE_TO_RED: nodeColor = Scalar(value, value, 255 - value); break;
-            case DARK_ORANGE_TO_BLUE: nodeColor = Scalar(value, 0, 255 - value); break;
-            case GREEN_TO_PINK: nodeColor = Scalar(255 - value, value, 255 - value); break;
-            case BLUE_TO_YELLOW: nodeColor = Scalar(value, 255 - value, 255 - value); break;
-            case BLACK_TO_WHITE: nodeColor = Scalar(value, value, value); break;
-            case HUE:
-                Mat3b bgr;
-                Mat3b hsv(cv::Vec3b(value, 255, 255));
-                cvtColor(hsv, bgr, CV_HSV2RGB);
-                
-                nodeColor = Scalar(bgr(0));
-                break;
-        }
-        
+        Scalar nodeColor = computeCellColor(value, colors);
+
         drawCell(result, cells[i], nodeColor, grid ? LINE_8 : LINE_AA);
-        
+
         if (grid) {
             drawGrid(result, cells[i], GRID_COLOR);
         }
     }
-    
+
     return result;
 }
 
 extern cv::Mat som::drawDistancesMap(const SOM &som,
-                                     const GradientColors colors,
+                                     const GradientMap colors,
                                      const bool grid,
                                      const Scalar backgroundColor) {
     Mat result(som.getHeight(), som.getWidth(), CV_8UC3, backgroundColor);
-    
+
     auto cells = som.getCells();
-    
+
     vector<vector<float>> values;
     for (size_t i = 0; i < cells.size(); i++) {
         values.push_back({(float)cells[i].distance[0]});
     }
-    
+
     minmaxByCols(values);
-    
+
     for (size_t i = 0; i < cells.size(); i++) {
-        Scalar nodeColor;
-        
+    
         float value = 255 - values[i][0] * 255;
         
-        switch (colors) {
-            case SKY_BLUE_TO_PINK: nodeColor = Scalar(255, 255 - value, value); break;
-            case SKY_BLUE_TO_YELLOW: nodeColor = Scalar(value, 255, 255 - value); break;
-            case SKY_BLUE_TO_RED: nodeColor = Scalar(value, value, 255 - value); break;
-            case DARK_ORANGE_TO_BLUE: nodeColor = Scalar(value, 0, 255 - value); break;
-            case GREEN_TO_PINK: nodeColor = Scalar(255 - value, value, 255 - value); break;
-            case BLUE_TO_YELLOW: nodeColor = Scalar(value, 255 - value, 255 - value); break;
-            case BLACK_TO_WHITE: nodeColor = Scalar(value, value, value); break;
-            case HUE:
-                Mat3b bgr;
-                Mat3b hsv(cv::Vec3b(value, 255, 255));
-                cvtColor(hsv, bgr, CV_HSV2RGB);
-                
-                nodeColor = Scalar(bgr(0));
-                break;
-        }
-        
+        Scalar nodeColor = computeCellColor(value, colors);
+
         drawCell(result, cells[i], nodeColor, grid ? LINE_8 : LINE_AA);
-        
+
         if (grid) {
             drawGrid(result, cells[i], GRID_COLOR);
         }
     }
-    
+
     return result;
 }
 
 extern cv::Mat som::draw1DMap(const SOM &som,
-                              const GradientColors colors,
+                              const GradientMap colors,
                               const bool grid,
                               const bool onlyActive,
                               const Scalar backgroundColor) {
     Mat result(som.getHeight(), som.getWidth(), CV_8UC3, backgroundColor);
-    
+
     auto cells = som.getCells();
-    
+
     vector<vector<float>> weights = reduceDimensionality(som, 1, false);
-    
+
     for (size_t i = 0; i < cells.size(); i++) {
         bool canDrawNode = (onlyActive && cells[i].state[0] > 0) || !onlyActive;
-        
+
         if (canDrawNode) {
-            Scalar nodeColor;
             
-            float value = 255 - weights[i][0] * 255;
+            float value = weights[i][0] * 255;
             
-            /*
-             const Scalar c1(0, 0, 255);
-             const Scalar c2(0, 255, 255);
-             
-             double alpha = double(value) / 255.0;
-             
-             nodeColor = c1 * (1.0 - alpha) + c2 * alpha;
-             */
-            
-            switch (colors) {
-                case SKY_BLUE_TO_PINK: nodeColor = Scalar(255, 255 - value, value); break;
-                case SKY_BLUE_TO_YELLOW: nodeColor = Scalar(value, 255, 255 - value); break;
-                case SKY_BLUE_TO_RED: nodeColor = Scalar(value, value, 255 - value); break;
-                case DARK_ORANGE_TO_BLUE: nodeColor = Scalar(value, 0, 255 - value); break;
-                case GREEN_TO_PINK: nodeColor = Scalar(255 - value, value, 255 - value); break;
-                case BLUE_TO_YELLOW: nodeColor = Scalar(value, 255 - value, 255 - value); break;
-                case BLACK_TO_WHITE: nodeColor = Scalar(value, value, value); break;
-                case HUE:
-                    Mat3b bgr;
-                    Mat3b hsv(cv::Vec3b(value, 255, 255));
-                    cvtColor(hsv, bgr, CV_HSV2RGB);
-                    
-                    nodeColor = Scalar(bgr(0));
-                    break;
-            }
-            
+            Scalar nodeColor = computeCellColor(value, colors);
+
             drawCell(result, cells[i], nodeColor, grid ? LINE_8 : LINE_AA);
         }
-        
+
         if (grid) {
             drawGrid(result, cells[i], GRID_COLOR);
         }
     }
-    
+
     return result;
 }
 
+#pragma mark - Colors
 
+Scalar computeColor(const float value, const ColormapTypes colormap) {
+    Mat3b valuePixel(cv::Vec3b(value, value, value));
+    Mat3b colorPixel;
+    applyColorMap(valuePixel, colorPixel, colormap);
+    
+    return Scalar(colorPixel(0));
+}
+
+Scalar som::computeCellColor(const float value, const GradientMap gradientMap) {
+    Scalar color;
+    
+    switch (gradientMap) {
+        case GRADIENT_SKY_BLUE_TO_PINK: color = Scalar(255, 255 - value, value); break;
+        case GRADIENT_SKY_BLUE_TO_YELLOW: color = Scalar(value, 255, 255 - value); break;
+        case GRADIENT_SKY_BLUE_TO_RED: color = Scalar(value, value, 255 - value); break;
+        case GRADIENT_DARK_ORANGE_TO_BLUE: color = Scalar(value, 0, 255 - value); break;
+        case GRADIENT_GREEN_TO_PINK: color = Scalar(255 - value, value, 255 - value); break;
+        case GRADIENT_BLUE_TO_YELLOW: color = Scalar(value, 255 - value, 255 - value); break;
+        case GRADIENT_BLACK_TO_WHITE: color = Scalar(value, value, value); break;
+        case GRADIENT_HUE: {
+            Mat3b bgr;
+            Mat3b hsv(cv::Vec3b(value, 255, 255));
+            cvtColor(hsv, bgr, CV_HSV2RGB);
+            
+            color = Scalar(bgr(0));
+        }
+            break;
+            
+        case GRADIENT_AUTUMN: color = computeColor(value, COLORMAP_AUTUMN); break;
+        case GRADIENT_BONE: color = computeColor(value, COLORMAP_BONE); break;
+        case GRADIENT_JET: color = computeColor(value, COLORMAP_JET); break;
+        case GRADIENT_WINTER: color = computeColor(value, COLORMAP_WINTER); break;
+        case GRADIENT_RAINBOW: color = computeColor(value, COLORMAP_RAINBOW); break;
+        case GRADIENT_OCEAN: color = computeColor(value, COLORMAP_OCEAN); break;
+        case GRADIENT_SUMMER: color = computeColor(value, COLORMAP_SUMMER); break;
+        case GRADIENT_SPRING: color = computeColor(value, COLORMAP_SPRING); break;
+        case GRADIENT_COOL: color = computeColor(value, COLORMAP_COOL); break;
+        case GRADIENT_HSV: color = computeColor(value, COLORMAP_HSV); break;
+        case GRADIENT_PINK: color = computeColor(value, COLORMAP_PINK); break;
+        case GRADIENT_HOT: color = computeColor(value, COLORMAP_HOT); break;
+        case GRADIENT_PARULA: color = computeColor(value, COLORMAP_PARULA); break;
+    }
+    
+    return color;
+}
 
 #pragma mark - Normalization
 
