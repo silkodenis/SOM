@@ -116,7 +116,7 @@ This example demonstrates various interpretations model view of a trained map us
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/convolution%203d%20+%201d.png?raw=true">
 </p>
 
-* Distances map. Two various colormap.
+* Maps of accumulated distances.
 
 <p align="center">
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/distances.png?raw=true">
@@ -128,13 +128,13 @@ This example demonstrates various interpretations model view of a trained map us
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/actives%20only%203d%20+%201d.png?raw=true">
 </p>
 
-* Approximation map. Based on the number of neurons activation. Two various colormap.
+* Approximation maps. Based on the number of neurons activation.
 
 <p align="center">
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/approximation%20gradient%20+%20hue.png?raw=true">
 </p>
 
-* Single channel analysis
+* Single channel maps.
   
 <p align="center">  
 <img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
