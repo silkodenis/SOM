@@ -134,7 +134,7 @@ This example demonstrates various interpretations model view of a trained map us
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/approximation%20gradient%20+%20hue.png?raw=true">
 </p>
 
-**Single channel analysis**
+* Single channel analysis
   
 <p align="center">  
 <img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
