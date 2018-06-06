@@ -134,7 +134,7 @@ This example demonstrates various interpretations model view of a trained map us
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/approximation%20gradient%20+%20hue.png?raw=true">
 </p>
 
-* These maps show how the resulting clusters depend on the components of the vectors used in training SOM.
+* These maps show how the resulting clusters depend on the components of the vectors used in training.
   
 <p align="center">  
 <img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
