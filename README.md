@@ -110,31 +110,31 @@ A simple example of analyzing the channels of a trained map.
 
 This example demonstrates various interpretations model view of a trained map using the additional library som_view.
 
-* Convolution maps, 3D + 1D.
+* Convolution maps, 3D(RGB) + 1D(V).
 
 <p align="center">
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/convolution%203d%20+%201d.png?raw=true">
 </p>
 
-* Maps of accumulated distances.
+* Maps of accumulated distances during training.
 
 <p align="center">
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/distances.png?raw=true">
 </p>
 
-* Maps from only active nodes.
+* Maps from nodes that have been activated during training.
 
 <p align="center">
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/actives%20only%203d%20+%201d.png?raw=true">
 </p>
 
-* Approximation maps. Based on the number of neurons activation.
+* Approximation maps. Temperature shows the frequency of neurons activation during training.
 
 <p align="center">
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/approximation%20gradient%20+%20hue.png?raw=true">
 </p>
 
-* Single channel maps.
+* These maps show how the resulting clusters depend on the components (channels) of the data set (vectors) used in training SOM.
   
 <p align="center">  
 <img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
