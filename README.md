@@ -128,7 +128,7 @@ This example demonstrates various interpretations model view of a trained map us
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/actives%20only%203d%20+%201d.png?raw=true">
 </p>
 
-* Approximation maps. Temperature shows the frequency of nodes activation during training.
+* Approximation maps. The temperature of the node indicates the frequency of activation during training.
 
 <p align="center">
 <img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/approximation%20gradient%20+%20hue.png?raw=true">
