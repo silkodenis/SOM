@@ -47,12 +47,9 @@ int main(int argc, const char * argv[]) {
     
     // Draw single channel maps
     vector<Mat> singleChannelMaps {
-        drawSingleChannelMap(som, 0, ColormapConfiguration
-(COLORSCALE_PARULA)),
-        drawSingleChannelMap(som, 1, ColormapConfiguration
-(COLORSCALE_PARULA)),
-        drawSingleChannelMap(som, 2, ColormapConfiguration
-(COLORSCALE_PARULA))
+        drawSingleChannelMap(som, 0, ColormapConfiguration(COLORSCALE_PARULA)),
+        drawSingleChannelMap(som, 1, ColormapConfiguration(COLORSCALE_PARULA)),
+        drawSingleChannelMap(som, 2, ColormapConfiguration(COLORSCALE_PARULA))
     };
     
     // Concatenate maps
