@@ -8,7 +8,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
-*/
+ */
 
 #include <random>
 #include <chrono>
@@ -28,7 +28,7 @@ static const string CHANNELS_MAP_WINDOW_NAME = "Channels";
 extern vector<vector<cl_float>> createRandomDataSet(const size_t channels,
                                                     const size_t labels,
                                                     uniform_real_distribution<cl_float> noiseRange);
-extern Mat drawSingleChannelMaps(const SOM &som, const GradientMap gradientMap);
+extern Mat drawSingleChannelMaps(const SOM &som, const ColormapConfiguration colormapConfiguration);
 
 int main(int argc, const char * argv[]) {
     
@@ -36,22 +36,22 @@ int main(int argc, const char * argv[]) {
     const size_t channels = 30;
     const size_t labels = 30;
     const uniform_real_distribution<cl_float> noiseRange(-0.1, 0.1);
-
+    
     vector<vector<cl_float>> data = createRandomDataSet(channels, labels, noiseRange);
-
+    
     // Create SOM
     const auto radius = 40;
     const auto hexSize = 10;
     const auto learningRate = 0.2;
     const auto iterationsCount = 10000;
-
+    
     SOM som(CPU);
     som.create(radius, hexSize, channels);
     som.prepare(data, MINMAX_BY_ROWS, RANDOM_FROM_DATA);
     som.train(iterationsCount, learningRate, EUCLIDEAN);
-
+    
     // Single channel maps
-    Mat allChannels = drawSingleChannelMaps(som, GRADIENT_JET);
+    Mat allChannels = drawSingleChannelMaps(som, ColormapConfiguration(COLORSCALE_JET));
     
     namedWindow(CHANNELS_MAP_WINDOW_NAME);
     moveWindow(CHANNELS_MAP_WINDOW_NAME, 20, 20);
@@ -60,11 +60,11 @@ int main(int argc, const char * argv[]) {
     // Aproximation maps
     Mat allMapsMat;
     vector<Mat> allMaps;
-
-    allMaps.push_back(drawApproximationMap(som, GRADIENT_PARULA));
-    allMaps.push_back(drawApproximationMap(som, GRADIENT_HUE));
+    
+    allMaps.push_back(drawApproximationMap(som, ColormapConfiguration(COLORSCALE_PARULA, 256, 0.0, 0.4)));
+    allMaps.push_back(drawApproximationMap(som, ColormapConfiguration(COLORSCALE_JET, 256, 0.0, 0.4)));
     hconcat(allMaps, allMapsMat);
-
+    
     namedWindow(APPROXIMATION_MAP_WINDOW_NAME);
     moveWindow(APPROXIMATION_MAP_WINDOW_NAME, 200, 180);
     imshow(APPROXIMATION_MAP_WINDOW_NAME, allMapsMat);
@@ -72,38 +72,38 @@ int main(int argc, const char * argv[]) {
     // Distances maps
     allMaps.clear();
     allMapsMat.release();
-    allMaps.push_back(drawDistancesMap(som, GRADIENT_SKY_BLUE_TO_PINK, true));
-    allMaps.push_back(drawDistancesMap(som, GRADIENT_JET, false));
+    allMaps.push_back(drawDistancesMap(som, ColormapConfiguration(COLORSCALE_COOL, 256, 0.0, 1.0, true)));
+    allMaps.push_back(drawDistancesMap(som, ColormapConfiguration(COLORSCALE_JET, 256, 0.0, 1.0, false)));
     hconcat(allMaps, allMapsMat);
     
     namedWindow(DISTANCES_MAP_WINDOW_NAME);
     moveWindow(DISTANCES_MAP_WINDOW_NAME, 180, 160);
     imshow(DISTANCES_MAP_WINDOW_NAME, allMapsMat);
-
+    
     // Only activated nodes
     allMaps.clear();
     allMapsMat.release();
-    allMaps.push_back(draw3DMap(som, false, true));
-    allMaps.push_back(draw1DMap(som, GRADIENT_HUE, false, true));
+    allMaps.push_back(draw3DMap(som, DisplayConfiguration(false, true)));
+    allMaps.push_back(draw1DMap(som, ColormapConfiguration(COLORSCALE_RAINBOW, labels), DisplayConfiguration(false, true)));
     hconcat(allMaps, allMapsMat);
-
+    
     namedWindow(ACTIVES_ONLY_MAP_WINDOW_NAME);
     moveWindow(ACTIVES_ONLY_MAP_WINDOW_NAME, 140, 120);
     imshow(ACTIVES_ONLY_MAP_WINDOW_NAME, allMapsMat);
-
+    
     // Convolution 3D + 1D
     allMaps.clear();
     allMapsMat.release();
     allMaps.push_back(draw3DMap(som));
-    allMaps.push_back(draw1DMap(som, GRADIENT_WINTER));
+    allMaps.push_back(draw1DMap(som, ColormapConfiguration(COLORSCALE_VIRIDIS, 256, 0.0, 1.0)));
     hconcat(allMaps, allMapsMat);
-
+    
     namedWindow(CONVOLUTION_MAP_WINDOW_NAME);
     moveWindow(CONVOLUTION_MAP_WINDOW_NAME, 60, 40);
     imshow(CONVOLUTION_MAP_WINDOW_NAME, allMapsMat);
-
+    
     waitKey();
-
+    
     cv::destroyAllWindows();
     
     return 0;
@@ -149,8 +149,8 @@ vector<vector<cl_float>> createRandomDataSet(const size_t channels, const size_t
     return data;
 }
 
-Mat drawNumberedChannel(const SOM &som, const size_t channelIndex, const GradientMap gradientMap, const float scale) {
-    Mat channel = drawSingleChannelMap(som, channelIndex, gradientMap);
+Mat drawNumberedChannel(const SOM &som, const size_t channelIndex, const ColormapConfiguration colormapConfiguration, const float scale) {
+    Mat channel = drawSingleChannelMap(som, channelIndex, colormapConfiguration);
     
     auto text = to_string(channelIndex);
     auto fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
@@ -164,7 +164,7 @@ Mat drawNumberedChannel(const SOM &som, const size_t channelIndex, const Gradien
     return channel;
 }
 
-Mat drawSingleChannelMaps(const SOM &som, const GradientMap gradientMap) {
+Mat drawSingleChannelMaps(const SOM &som, const ColormapConfiguration colormapConfiguration) {
     const auto channels = som.getNodeDimensionality();
     
     vector<vector<Mat>> allMaps_v;
@@ -180,7 +180,7 @@ Mat drawSingleChannelMaps(const SOM &som, const GradientMap gradientMap) {
         for (size_t j = 0; j < 6; j++) {
             auto channelIndex = i * h_size + j;
             
-            Mat channel = drawNumberedChannel(som, channelIndex, gradientMap, channelMapScale);
+            Mat channel = drawNumberedChannel(som, channelIndex, colormapConfiguration, channelMapScale);
             maps.push_back(channel);
         }
         
@@ -193,7 +193,7 @@ Mat drawSingleChannelMaps(const SOM &som, const GradientMap gradientMap) {
             if (h_size * v_size + i < channels) {
                 auto channelIndex = h_size * v_size + i;
                 
-                Mat channel = drawNumberedChannel(som, channelIndex, gradientMap, channelMapScale);
+                Mat channel = drawNumberedChannel(som, channelIndex, colormapConfiguration, channelMapScale);
                 surplusMaps.push_back(channel);
             } else {
                 surplusMaps.push_back(Mat(surplusMaps[i-1].size(), CV_8UC3, Scalar::all(255)));

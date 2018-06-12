@@ -65,11 +65,11 @@ void showTrainingProcess(SOM &som, const size_t iterationsCount, const double le
     const auto graphThickness = 2;
     const auto axisThickness = 1;
     
-    const Scalar bgColor(WHITE_COLOR);
-    const Scalar axisColor(BLACK_COLOR);
-    const Scalar errorColor(RED_COLOR);
-    const Scalar diffColor(CORAL_COLOR);
-    const Scalar fontColor(BLACK_COLOR);
+    const Scalar bgColor(COLOR_WHITE);
+    const Scalar axisColor(COLOR_BLACK);
+    const Scalar errorColor(COLOR_RED);
+    const Scalar diffColor(COLOR_CORAL);
+    const Scalar fontColor(COLOR_BLACK);
     
     const Point origin(horizontalOffset, verticalOffset + heightGraph);
     

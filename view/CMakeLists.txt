@@ -6,10 +6,17 @@ find_package(OpenCV REQUIRED)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(../som/include/public)
+include_directories(include)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-set(SOURCE_LIB som_cv_view.cpp)
-set(HEADERS_LIB som_cv_view.hpp)
+
+set(SOURCE_LIB 
+src/som_cv_view.cpp
+src/pseudocolor_schemes.cpp)
+
+set(HEADERS_LIB 
+include/som_cv_view.hpp
+include/pseudocolor_schemes.hpp)
 
 if(NOT CMAKE_GENERATOR STREQUAL Xcode)
 	file(COPY ${HEADERS_LIB} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/include)

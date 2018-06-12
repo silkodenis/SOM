@@ -10,5 +10,6 @@ add_subdirectory(simple\ training)
 add_subdirectory(single\ channel\ analysis)
 add_subdirectory(deep\ analysis)
 add_subdirectory(training\ process)
+add_subdirectory(colormaps)
 
 

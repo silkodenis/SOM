@@ -71,17 +71,17 @@ int main(int argc, const char * argv[]) {
         for (auto j = 0; j < epochs; j += step) {
             som.epochs(step);
 
-            Mat dst(WINDOW_HEIGHT, WINDOW_WIDTH, CV_8UC3, WHITE_COLOR);
+            Mat dst(WINDOW_HEIGHT, WINDOW_WIDTH, CV_8UC3, COLOR_WHITE);
             
             for (auto m = 0; m < data.size(); m++) {
-                circle(dst, cv::Point2f(data[m][0], data[m][1]), 1, RED_COLOR, 2);
+                circle(dst, cv::Point2f(data[m][0], data[m][1]), 1, COLOR_RED, 2);
             }
             
             for (auto m = 0; m < cells.size() - 1; m++) {
                 cv::Point2f p1(cells[m].weights[0], cells[m].weights[1]);
                 cv::Point2f p2(cells[m + 1].weights[0], cells[m + 1].weights[1]);
                 
-                line(dst, p1, p2, BLUE_COLOR, 2);
+                line(dst, p1, p2, COLOR_BLUE, 2);
             }
             
             imshow(TRAINING_PROCESS_WINDOW_NAME, dst);

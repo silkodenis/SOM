@@ -51,7 +51,7 @@ int main(int argc, const char * argv[]) {
 
     // Show trained map
     namedWindow(SAVED_MAP_WINDOW_NAME); moveWindow(SAVED_MAP_WINDOW_NAME, 260, 30);
-    imshow(SAVED_MAP_WINDOW_NAME, draw3DMap(som, false, false, BLACK_COLOR));
+    imshow(SAVED_MAP_WINDOW_NAME, draw3DMap(som, DisplayConfiguration(false, false, cv::Mat(), COLOR_BLACK)));
 
     // Save to file and release som object
     som.save("model.som");
@@ -61,7 +61,7 @@ int main(int argc, const char * argv[]) {
     som.load("model.som");
 
     namedWindow(LOADED_MAP_WINDOW_NAME); moveWindow(LOADED_MAP_WINDOW_NAME, 440, 80);
-    imshow(LOADED_MAP_WINDOW_NAME, draw3DMap(som, false, false, BLACK_COLOR));
+    imshow(LOADED_MAP_WINDOW_NAME, draw3DMap(som, DisplayConfiguration(false, false, cv::Mat(), COLOR_BLACK)));
 
     waitKey();
 
