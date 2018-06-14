@@ -164,7 +164,7 @@ SOM View has 20 most popular Matlab and Matplotlib equivalent colormaps.
 <img width="620" height="711" src="https://github.com/silkodenis/SOM/blob/readme_assets/pseudocolor%20schemes/colormaps.gif?raw=true?raw=true">
 </p>
 
-The colormaps have three parameters for color adjustment (inversion, quantization and limits).
+The colormap have three parameters for adjustment (inversion, colors quantization and limits).
 
 <p align="center">
 <img width="701" height="711" src="https://github.com/silkodenis/SOM/blob/readme_assets/pseudocolor%20schemes/colormap%20configure.gif?raw=true?raw=true?raw=true">
