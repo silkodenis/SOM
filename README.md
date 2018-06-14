@@ -161,7 +161,7 @@ A simple demonstration of saving and loading your model from a binary file.
 SOM View has 20 most popular Matlab and Matplotlib equivalent colormaps.
 
 <p align="center">
-<img width="620" height="711" src="https://github.com/silkodenis/SOM/blob/readme_assets/pseudocolor%20schemes/colormaps.gif?raw=true?raw=true">
+<img width="680" height="711" src="https://github.com/silkodenis/SOM/blob/readme_assets/pseudocolor%20schemes/colormaps.gif?raw=true?raw=true">
 </p>
 
 The colormap have three parameters for adjustment (inversion, colors quantization and limits).
