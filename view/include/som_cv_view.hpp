@@ -49,10 +49,11 @@ namespace som {
     };
     
     struct ColorbarConfiguration {
-        ColorbarConfiguration(const size_t lenght_, const bool horizontal_, const bool coordinates_) :
-        lenght(lenght_), horizontal(horizontal_) , coordinates(coordinates_) {}
+        ColorbarConfiguration(const size_t lenght_, const size_t thickness_, const bool horizontal_, const bool coordinates_) :
+        lenght(lenght_), thickness(thickness_), horizontal(horizontal_) , coordinates(coordinates_) {}
         
         const size_t lenght;
+        const size_t thickness;
         const bool horizontal;
         const bool coordinates;
     };

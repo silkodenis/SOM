@@ -22,8 +22,6 @@ using namespace cv;
 using namespace som;
 
 namespace som {
-    static const size_t COLORBAR_THICKNESS = 20;
-    
     static const Scalar BACKGROUND_COLOR(COLOR_WHITE);
     static const Scalar GRID_COLOR(COLOR_BLACK);
     static const Scalar CIRCLE_COLOR(COLOR_RED);
@@ -124,16 +122,16 @@ Mat som::draw1DColorBar(const ColorbarConfiguration colorBarConfiguration, const
     Mat colormap = getColormap(colormapConfiguration);
     
     return colorBarConfiguration.horizontal ?
-    drawColorBar(colormap, colorBarConfiguration.lenght, COLORBAR_THICKNESS, colorBarConfiguration.coordinates) :
-    drawColorBar(colormap, COLORBAR_THICKNESS, colorBarConfiguration.lenght, colorBarConfiguration.coordinates);
+    drawColorBar(colormap, colorBarConfiguration.lenght, colorBarConfiguration.thickness, colorBarConfiguration.coordinates) :
+    drawColorBar(colormap, colorBarConfiguration.thickness, colorBarConfiguration.lenght, colorBarConfiguration.coordinates);
 }
 
 Mat som::draw3DColorBar(const ColorbarConfiguration colorBarConfiguration) {
     Mat colormap = getColormap(ColormapConfiguration(COLORSCALE_HSV));
     
     Mat colorbar = colorBarConfiguration.horizontal ?
-    drawColorBar(colormap, colorBarConfiguration.lenght, COLORBAR_THICKNESS, false) :
-    drawColorBar(colormap, COLORBAR_THICKNESS, colorBarConfiguration.lenght, false);
+    drawColorBar(colormap, colorBarConfiguration.lenght, colorBarConfiguration.thickness, false) :
+    drawColorBar(colormap, colorBarConfiguration.thickness, colorBarConfiguration.lenght, false);
     
     auto isHorizontal = colorbar.cols > colorbar.rows;
     auto koeff = isHorizontal ? 1.0 / colorbar.rows : 1.0 / colorbar.cols;

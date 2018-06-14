@@ -20,10 +20,11 @@ using namespace std;
 
 Mat drawColorBar(const string &name, ColorScale colorScale) {
     const auto lenght = 800;
+    const auto thickness = 30;
     const auto horizontal = true;
     const auto coordinates = false;
     
-    Mat colorbar = draw1DColorBar(ColorbarConfiguration(lenght, horizontal, coordinates), ColormapConfiguration(colorScale));
+    Mat colorbar = draw1DColorBar(ColorbarConfiguration(lenght, thickness, horizontal, coordinates), ColormapConfiguration(colorScale));
     Mat title(colorbar.rows, 80, CV_8UC3, COLOR_WHITE);
     
     cv::putText(title, name, Point(5, colorbar.rows/1.5), FONT_HERSHEY_PLAIN, 0.75, COLOR_BLACK, 1, LINE_AA);
