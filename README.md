@@ -156,6 +156,25 @@ A simple demonstration of saving and loading your model from a binary file.
 <img width="742" height="643" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/save%20and%20load/som.png?raw=true">
 </p>
 
+## Pseudocolor Schemes
+
+**Available Colormaps**
+
+som_view library has 20 most popular Matlab and Matplotlib equivalent colormaps.
+
+<p align="center">
+<img width="620" height="711" src="https://github.com/silkodenis/SOM/blob/readme_assets/pseudocolor%20schemes/colormaps.gif?raw=true?raw=true">
+</p>
+
+**Colormap Configuration**
+
+The colormaps have 3 parameters for adjustment (map inversion, color quantization and color limits).
+
+<p align="center">
+<img width="701" height="711" src="https://github.com/silkodenis/SOM/blob/readme_assets/pseudocolor%20schemes/colormap%20configure.gif?raw=true?raw=true?raw=true">
+</p>
+
+
 ## Authors
 
 * **Denis Silko** - *Initial work* - [silkodenis](https://github.com/silkodenis)
