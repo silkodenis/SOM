@@ -23,12 +23,13 @@ using namespace std;
 static const string TRAINING_PROCESS_WINDOW_NAME = "Training process";
 
 extern vector<vector<cl_float>> createRandomDataSet(const size_t channels, const size_t labels, uniform_real_distribution<cl_float> noiseRange);
-extern void showTrainingProcess(SOM &som, const size_t iterationsCount, const double learningRate, const size_t step, const DistanceMetric metric);
+extern Mat drawGraph(SOM &som, const size_t i, const size_t step, const size_t count,
+                     vector<double> &errors, vector<double> &diffs, const size_t width, const size_t height);
 
 int main(int argc, const char * argv[]) {
     
     // Create random data set
-    const size_t channels = 5;
+    const size_t channels = 15;
     const size_t labels = 3;
     const uniform_real_distribution<cl_float> noiseRange(-0.8, 0.8);
 
@@ -36,7 +37,7 @@ int main(int argc, const char * argv[]) {
     
     // Create SOM
     const auto radius = 10;
-    const auto hexSize = 10;
+    const auto hexSize = 15;
     const auto learningRate = 0.2;
     const auto iterationsCount = 3000;
     const auto step = 10;
@@ -46,7 +47,19 @@ int main(int argc, const char * argv[]) {
     som.create(radius, hexSize, channels);
     som.prepare(data, NO_NORM, RANDOM_0_1);
     
-    showTrainingProcess(som, iterationsCount, learningRate, step, metric);
+    som.train(iterationsCount, learningRate, metric, true);
+    
+    vector<double> errors, diffs;
+    
+    for (auto i = 0; i <= iterationsCount; i += step) {
+        som.epochs(step);
+        
+        Mat graph = drawGraph(som, i, step, iterationsCount, errors, diffs, 800, 600);
+        
+        imshow(TRAINING_PROCESS_WINDOW_NAME, graph);
+        
+        waitKey(1);
+    }
     
     waitKey();
 
@@ -55,9 +68,8 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-void showTrainingProcess(SOM &som, const size_t iterationsCount, const double learningRate, const size_t step, const DistanceMetric metric) {
-    const auto width = 800;
-    const auto height = 600;
+Mat drawGraph(SOM &som, const size_t i, const size_t step, const size_t count,
+              vector<double> &errors, vector<double> &diffs, const size_t width, const size_t height) {
     const auto verticalOffset = 50;
     const auto horizontalOffset = 50;
     const auto widthGraph = width - horizontalOffset * 2;
@@ -73,68 +85,64 @@ void showTrainingProcess(SOM &som, const size_t iterationsCount, const double le
     
     const Point origin(horizontalOffset, verticalOffset + heightGraph);
     
-    vector<double> offsets, errors, diffs;
+    Mat result(height, width, CV_8UC3, bgColor);
     
-    double maxError = FLT_MIN;
-    double maxDiff = FLT_MIN;
-    double lastError = 0;
+    static vector<double> offsets;
+    static double maxError, maxDiff, lastError;
     
-    som.train(iterationsCount, learningRate, metric, true);
-    
-    for (size_t i = 0; i <= iterationsCount; i += step) {
-        som.epochs(step);
+    if (i < 1) {
+        maxError = FLT_MIN;
+        maxDiff = FLT_MIN;
+        lastError = 0;
         
-        offsets.push_back(origin.x + (float)i / iterationsCount * widthGraph);
-        
-        double error = som.computeError();
-        double diff = abs(error - lastError) * ((float)step / iterationsCount);
-        
-        errors.push_back(error);
-        diffs.push_back(diff);
-        maxError = max(maxError, error);
-        maxDiff = max(maxDiff, diff);
-        lastError = error;
-        
-        Mat result(height, width, CV_8UC3, bgColor);
-        
-        // Axes
-        // y
-        line(result, Point(horizontalOffset, verticalOffset), Point(horizontalOffset, verticalOffset + heightGraph), axisColor, axisThickness);
-        // x
-        line(result, Point(horizontalOffset, verticalOffset + heightGraph), Point(horizontalOffset + widthGraph, verticalOffset + heightGraph), axisColor, axisThickness);
-        
-        // Text
-        const int fontFace = FONT_HERSHEY_TRIPLEX;
-        const double fontScale = 0.6;
-        const int thickness = 1;
-        
-        putText(result, to_string(iterationsCount), Point(horizontalOffset + widthGraph - 10, verticalOffset + heightGraph + 15),
-                fontFace, fontScale, fontColor, thickness, 8);
-        putText(result, "0", Point(horizontalOffset - 15, verticalOffset + heightGraph + 15), fontFace, fontScale, fontColor, thickness, 8);
-        putText(result, "epochs: " + to_string(i), Point(horizontalOffset, verticalOffset * 0.8), fontFace, fontScale, fontColor, thickness, 8);
-        
-        stringstream errorStringStream; errorStringStream << fixed << setprecision(4) << error;
-        string errorText = "error: " + errorStringStream.str();
-        putText(result, errorText, cv::Point(width * 0.4, verticalOffset * 0.8), fontFace, fontScale, errorColor, thickness, 8);
-        
-        stringstream diffStringStream; diffStringStream << fixed << setprecision(4) << diff / step * 100000;
-        string diffText = "diff: " + diffStringStream.str();
-        cv::putText(result, diffText, cv::Point(width * 0.75, verticalOffset * 0.8), fontFace, fontScale, diffColor, thickness, 8);
-        
-        // Graphs
-        for (size_t j = 1; j < offsets.size(); j++) {
-            line(result, Point2f(offsets[j - 1], origin.y - errors[j - 1] / maxError * heightGraph),
-                 Point2f(offsets[j], origin.y - errors[j] / maxError * heightGraph), errorColor, graphThickness);
-            
-            line(result, Point2f(offsets[j - 1], origin.y - diffs[j - 1] / maxDiff * heightGraph),
-                 Point2f(offsets[j], origin.y - diffs[j] / maxDiff * heightGraph), diffColor, graphThickness);
-        }
-        
-        // Show graph
-        imshow(TRAINING_PROCESS_WINDOW_NAME, result);
-        
-        waitKey(1);
+        offsets.clear();
     }
+    
+    offsets.push_back(origin.x + (float)i / count * widthGraph);
+    
+    double error = som.computeError();
+    double diff = abs(error - lastError) * ((float)step / count);
+    
+    errors.push_back(error);
+    diffs.push_back(diff);
+    maxError = max(maxError, error);
+    maxDiff = max(maxDiff, diff);
+    lastError = error;
+    
+    // Axes
+    // y
+    line(result, Point(horizontalOffset, verticalOffset), Point(horizontalOffset, verticalOffset + heightGraph), axisColor, axisThickness);
+    // x
+    line(result, Point(horizontalOffset, verticalOffset + heightGraph), Point(horizontalOffset + widthGraph, verticalOffset + heightGraph), axisColor, axisThickness);
+    
+    // Text
+    const int fontFace = FONT_HERSHEY_TRIPLEX;
+    const double fontScale = 0.6;
+    const int thickness = 1;
+    
+    putText(result, to_string(count), Point(horizontalOffset + widthGraph - 10, verticalOffset + heightGraph + 15),
+            fontFace, fontScale, fontColor, thickness, 8);
+    putText(result, "0", Point(horizontalOffset - 15, verticalOffset + heightGraph + 15), fontFace, fontScale, fontColor, thickness, 8);
+    putText(result, "epochs: " + to_string(i), Point(horizontalOffset, verticalOffset * 0.8), fontFace, fontScale, fontColor, thickness, 8);
+    
+    stringstream errorStringStream; errorStringStream << fixed << setprecision(4) << error;
+    string errorText = "error: " + errorStringStream.str();
+    putText(result, errorText, cv::Point(width * 0.4, verticalOffset * 0.8), fontFace, fontScale, errorColor, thickness, 8);
+    
+    stringstream diffStringStream; diffStringStream << fixed << setprecision(4) << diff / step * 100000;
+    string diffText = "diff: " + diffStringStream.str();
+    cv::putText(result, diffText, cv::Point(width * 0.75, verticalOffset * 0.8), fontFace, fontScale, diffColor, thickness, 8);
+    
+    // Graphs
+    for (size_t j = 1; j < offsets.size(); j++) {
+        line(result, Point2f(offsets[j - 1], origin.y - errors[j - 1] / maxError * heightGraph),
+             Point2f(offsets[j], origin.y - errors[j] / maxError * heightGraph), errorColor, graphThickness);
+        
+        line(result, Point2f(offsets[j - 1], origin.y - diffs[j - 1] / maxDiff * heightGraph),
+             Point2f(offsets[j], origin.y - diffs[j] / maxDiff * heightGraph), diffColor, graphThickness);
+    }
+    
+    return result;
 }
 
 vector<vector<cl_float>> createRandomDataSet(const size_t channels, const size_t labels, uniform_real_distribution<cl_float> noiseRange) {
