@@ -47,7 +47,7 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 ```
 
 ## Examples
-Below is a brief overview of the examples, the source code of which gives a quick start to work with SOM.
+Below is a brief overview of the examples, the [source code](https://github.com/silkodenis/SOM/tree/master/examples) of which gives a quick start to work with SOM.
 
 **Simple training**
 
