@@ -73,13 +73,13 @@ int main(int argc, const char * argv[]) {
 
             Mat dst(WINDOW_HEIGHT, WINDOW_WIDTH, CV_8UC3, COLOR_WHITE);
             
-            for (auto m = 0; m < data.size(); m++) {
-                circle(dst, cv::Point2f(data[m][0], data[m][1]), 1, COLOR_RED, 2);
+            for (auto k = 0; k < data.size(); k++) {
+                circle(dst, cv::Point2f(data[k][0], data[k][1]), 1, COLOR_RED, 2);
             }
             
-            for (auto m = 0; m < cells.size() - 1; m++) {
-                cv::Point2f p1(cells[m].weights[0], cells[m].weights[1]);
-                cv::Point2f p2(cells[m + 1].weights[0], cells[m + 1].weights[1]);
+            for (auto k = 0; k < cells.size() - 1; k++) {
+                cv::Point2f p1(cells[k].weights[0], cells[k].weights[1]);
+                cv::Point2f p2(cells[k + 1].weights[0], cells[k + 1].weights[1]);
                 
                 line(dst, p1, p2, COLOR_BLUE, 2);
             }

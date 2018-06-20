@@ -25,19 +25,26 @@ static const string ACTIVES_ONLY_MAP_WINDOW_NAME = "Actives only 3D + 1D";
 static const string CONVOLUTION_MAP_WINDOW_NAME = "Convolution: 3D + 1D";
 static const string CHANNELS_MAP_WINDOW_NAME = "Channels";
 
-extern vector<vector<cl_float>> createRandomDataSet(const size_t channels,
-                                                    const size_t labels,
-                                                    uniform_real_distribution<cl_float> noiseRange);
+extern void addRandomData(vector<vector<cl_float>> &dst,
+                          const size_t count,
+                          const size_t channels,
+                          const size_t labels,
+                          uniform_real_distribution<cl_float> noiseRange);
 extern Mat drawSingleChannelMaps(const SOM &som, const ColormapConfiguration colormapConfiguration);
 
 int main(int argc, const char * argv[]) {
     
     // Create random data set
     const size_t channels = 30;
-    const size_t labels = 30;
     const uniform_real_distribution<cl_float> noiseRange(-0.1, 0.1);
     
-    vector<vector<cl_float>> data = createRandomDataSet(channels, labels, noiseRange);
+    vector<vector<cl_float>> data;
+    addRandomData(data, 400, channels, 1, noiseRange);
+    addRandomData(data, 300, channels, 1, noiseRange);
+    addRandomData(data, 300, channels, 1, noiseRange);
+    addRandomData(data, 500, channels, 1, noiseRange);
+    addRandomData(data, 600, channels, 1, noiseRange);
+    addRandomData(data, 700, channels, 1, noiseRange);
     
     // Create SOM
     const auto radius = 40;
@@ -61,8 +68,8 @@ int main(int argc, const char * argv[]) {
     Mat allMapsMat;
     vector<Mat> allMaps;
     
-    allMaps.push_back(drawApproximationMap(som, ColormapConfiguration(COLORSCALE_PARULA, 256, 0.0, 0.4)));
-    allMaps.push_back(drawApproximationMap(som, ColormapConfiguration(COLORSCALE_JET, 256, 0.0, 0.4)));
+    allMaps.push_back(drawApproximationMap(som, ColormapConfiguration(COLORSCALE_PARULA, 256, 0.0, 0.3)));
+    allMaps.push_back(drawApproximationMap(som, ColormapConfiguration(COLORSCALE_JET, 256, 0.0, 0.3)));
     hconcat(allMaps, allMapsMat);
     
     namedWindow(APPROXIMATION_MAP_WINDOW_NAME);
@@ -72,8 +79,8 @@ int main(int argc, const char * argv[]) {
     // Distances maps
     allMaps.clear();
     allMapsMat.release();
-    allMaps.push_back(drawDistancesMap(som, ColormapConfiguration(COLORSCALE_COOL, 256, 0.0, 1.0, true)));
-    allMaps.push_back(drawDistancesMap(som, ColormapConfiguration(COLORSCALE_JET, 256, 0.0, 1.0, false)));
+    allMaps.push_back(drawDistancesMap(som, ColormapConfiguration(COLORSCALE_MAGMA, 256, 0.0, 1.0, true)));
+    allMaps.push_back(drawDistancesMap(som, ColormapConfiguration(COLORSCALE_JET, 256, 0.0, 1.0, true)));
     hconcat(allMaps, allMapsMat);
     
     namedWindow(DISTANCES_MAP_WINDOW_NAME);
@@ -84,7 +91,7 @@ int main(int argc, const char * argv[]) {
     allMaps.clear();
     allMapsMat.release();
     allMaps.push_back(draw3DMap(som, DisplayConfiguration(false, true)));
-    allMaps.push_back(draw1DMap(som, ColormapConfiguration(COLORSCALE_RAINBOW, labels), DisplayConfiguration(false, true)));
+    allMaps.push_back(draw1DMap(som, ColormapConfiguration(COLORSCALE_RAINBOW), DisplayConfiguration(false, true)));
     hconcat(allMaps, allMapsMat);
     
     namedWindow(ACTIVES_ONLY_MAP_WINDOW_NAME);
@@ -95,7 +102,7 @@ int main(int argc, const char * argv[]) {
     allMaps.clear();
     allMapsMat.release();
     allMaps.push_back(draw3DMap(som));
-    allMaps.push_back(draw1DMap(som, ColormapConfiguration(COLORSCALE_VIRIDIS, 256, 0.0, 1.0)));
+    allMaps.push_back(draw1DMap(som, ColormapConfiguration(COLORSCALE_PARULA, 256, 0.0, 1.0)));
     hconcat(allMaps, allMapsMat);
     
     namedWindow(CONVOLUTION_MAP_WINDOW_NAME);
@@ -109,7 +116,11 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-vector<vector<cl_float>> createRandomDataSet(const size_t channels, const size_t labels, uniform_real_distribution<cl_float> noiseRange) {
+void addRandomData(vector<vector<cl_float>> &dst,
+                   const size_t count,
+                   const size_t channels,
+                   const size_t labels,
+                   uniform_real_distribution<cl_float> noiseRange) {
     mt19937_64 rng;
     uint64_t timeSeed = chrono::high_resolution_clock::now().time_since_epoch().count();
     seed_seq seq{uint32_t(timeSeed & 0xffffffff), uint32_t(timeSeed>>32)};
@@ -125,7 +136,7 @@ vector<vector<cl_float>> createRandomDataSet(const size_t channels, const size_t
             vector.push_back(vectorRange(rng));
         }
         
-        for (size_t l = 0; l < 300; l++) {
+        for (size_t l = 0; l < count; l++) {
             std::vector<cl_float> noiseVector;
             
             for (size_t j = 0; j < channels; j++) {
@@ -140,13 +151,11 @@ vector<vector<cl_float>> createRandomDataSet(const size_t channels, const size_t
                 noiseVector.push_back(value);
             }
             
-            data.push_back(noiseVector);
+            dst.push_back(noiseVector);
         }
         
-        data.push_back(vector);
+        dst.push_back(vector);
     }
-    
-    return data;
 }
 
 Mat drawNumberedChannel(const SOM &som, const size_t channelIndex, const ColormapConfiguration colormapConfiguration, const float scale) {
