@@ -17,7 +17,7 @@
 
 namespace som {
     
-    // Color scales equivalent Matlab and Matplotlibs
+    // Color scales equivalent Matlab and Matplotlib
     enum ColorScale {
         COLORSCALE_GRAY,
         COLORSCALE_AUTUMN,
