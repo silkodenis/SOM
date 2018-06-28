@@ -69,7 +69,7 @@ int main(int argc, const char * argv[]) {
         auto cells = som.getCells();
         
         for (auto j = 0; j < epochs; j += step) {
-            som.epochs(step);
+            som.train(step);
 
             Mat dst(WINDOW_HEIGHT, WINDOW_WIDTH, CV_8UC3, COLOR_WHITE);
             

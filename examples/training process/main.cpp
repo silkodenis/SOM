@@ -52,7 +52,7 @@ int main(int argc, const char * argv[]) {
     vector<double> errors, diffs;
     
     for (auto i = 0; i <= iterationsCount; i += step) {
-        som.epochs(step);
+        som.train(step);
         
         Mat graph = drawGraph(som, i, step, iterationsCount, errors, diffs, 800, 600);
         

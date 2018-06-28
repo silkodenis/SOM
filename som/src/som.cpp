@@ -141,7 +141,7 @@ void SOM::train(const size_t iterationsCount, const double learningRate, const D
     cout << "SOM: Train duration: " << setprecision(4) << (clock() - start) / (double)CLOCKS_PER_SEC << endl;
 }
 
-bool SOM::epochs(size_t count) {
+bool SOM::train(size_t count) {
     if (trainer_) {
         for (size_t i = 0; i < count; i++) {
             if (trainer_->epoch()) {

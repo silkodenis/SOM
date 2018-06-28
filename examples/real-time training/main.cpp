@@ -53,7 +53,7 @@ int main(int argc, const char * argv[]) {
     
     namedWindow(TRAINING_PROCESS_WINDOW_NAME); moveWindow(TRAINING_PROCESS_WINDOW_NAME, 700, 100);
     
-    while (!som.epochs(5)) {
+    while (!som.train(5)) {
         imshow(TRAINING_PROCESS_WINDOW_NAME, draw3DMap(som));
         waitKey(1);
     }

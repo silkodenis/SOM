@@ -42,7 +42,7 @@ namespace som {
         
         // Training
         void train(const size_t iterationsCount, const double learningRate, const DistanceMetric = EUCLIDEAN, bool manual = false);
-        bool epochs(size_t count);
+        bool train(size_t epochs);
         
         // Usage
         void setLabel(int label, size_t index);
