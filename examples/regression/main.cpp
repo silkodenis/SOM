@@ -56,19 +56,19 @@ int main(int argc, const char * argv[]) {
         
         // Real-time training and vizualization
         const auto learningRate = 0.1;
-        const auto iterationsCount = 2000;
-        const auto epochs = 0.35 * iterationsCount;
+        const auto allEpochs = 2000;
+        const auto actuallyEpochs = 0.35 * allEpochs;
         const auto manual = true;
         const auto step = 5;
         
-        som.train(iterationsCount, learningRate, EUCLIDEAN, manual);
+        som.train(allEpochs, learningRate, EUCLIDEAN, manual);
         
         namedWindow(TRAINING_PROCESS_WINDOW_NAME);
         moveWindow(TRAINING_PROCESS_WINDOW_NAME, 150, 50);
         
         auto cells = som.getCells();
         
-        for (auto j = 0; j < epochs; j += step) {
+        for (auto j = 0; j < actuallyEpochs; j += step) {
             som.train(step);
 
             Mat dst(WINDOW_HEIGHT, WINDOW_WIDTH, CV_8UC3, COLOR_WHITE);

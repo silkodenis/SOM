@@ -39,7 +39,7 @@ int main(int argc, const char * argv[]) {
     const auto hexSize = 12;
     const auto channels = 3;
     const auto learningRate = 0.003;
-    const auto iterationsCount = 20000;
+    const auto epochs = 20000;
     
     SOM som(CPU);
     
@@ -47,7 +47,7 @@ int main(int argc, const char * argv[]) {
     som.create(cols, rows, hexSize, channels);
     som.prepare(data, NO_NORM, RANDOM_FROM_DATA);
     som.setRandomWeights(0, 0.001);
-    som.train(iterationsCount, learningRate, SAD);
+    som.train(epochs, learningRate, SAD);
 
     // Show trained map
     namedWindow(SAVED_MAP_WINDOW_NAME); moveWindow(SAVED_MAP_WINDOW_NAME, 260, 30);

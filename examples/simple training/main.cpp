@@ -39,7 +39,7 @@ int main(int argc, const char * argv[]) {
     const auto hexSize = 30;
     const auto channels = 3;
     const auto learningRate = 0.2;
-    const auto iterationsCount = 2000;
+    const auto epochs = 2000;
     
     SOM som(CPU);
     som.create(cols, rows, hexSize, channels);
@@ -48,7 +48,7 @@ int main(int argc, const char * argv[]) {
     imshow(UNTRAINED_MAP_WINDOW_NAME, draw3DMap(som, true));
     
     som.prepare(data);
-    som.train(iterationsCount, learningRate);
+    som.train(epochs, learningRate);
 
     namedWindow(TRAINED_MAP_WINDOW_NAME); moveWindow(TRAINED_MAP_WINDOW_NAME, 700, 100);
     imshow(TRAINED_MAP_WINDOW_NAME, draw3DMap(som, true));

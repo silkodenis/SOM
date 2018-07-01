@@ -41,7 +41,7 @@ namespace som {
         void prepare(const uint8_t *pixelBuffer, const size_t lenght, const Normalization = NO_NORM, const InitialWeights = RANDOM_FROM_DATA);
         
         // Training
-        void train(const size_t iterationsCount, const double learningRate, const DistanceMetric = EUCLIDEAN, bool manual = false);
+        void train(const size_t epochs, const double learningRate, const DistanceMetric = EUCLIDEAN, bool manual = false);
         bool train(size_t epochs);
         
         // Usage

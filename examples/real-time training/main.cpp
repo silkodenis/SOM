@@ -38,7 +38,7 @@ int main(int argc, const char * argv[]) {
     const auto hexSize = 18;
     const auto channels = 3;
     const auto learningRate = 0.1;
-    const auto iterationsCount = 7000;
+    const auto epochs = 7000;
     const auto metric = EUCLIDEAN;
     const auto manual = true;
     
@@ -49,7 +49,7 @@ int main(int argc, const char * argv[]) {
     namedWindow(UNTRAINED_MAP_WINDOW_NAME); moveWindow(UNTRAINED_MAP_WINDOW_NAME, 40, 100);
     imshow(UNTRAINED_MAP_WINDOW_NAME, draw3DMap(som, true));
 
-    som.train(iterationsCount, learningRate, metric, manual);
+    som.train(epochs, learningRate, metric, manual);
     
     namedWindow(TRAINING_PROCESS_WINDOW_NAME); moveWindow(TRAINING_PROCESS_WINDOW_NAME, 700, 100);
     

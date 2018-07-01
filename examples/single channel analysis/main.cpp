@@ -38,12 +38,12 @@ int main(int argc, const char * argv[]) {
     const auto hexSize = 3;
     const auto channels = 3;
     const auto learningRate = 0.1;
-    const auto iterationsCount = 5000;
+    const auto epochs = 5000;
     
     SOM som(CPU);
     som.create(radius, hexSize, channels);
     som.prepare(data, MINMAX_BY_COLUMNS, RANDOM_FROM_DATA);
-    som.train(iterationsCount, learningRate);
+    som.train(epochs, learningRate);
     
     // Draw single channel maps
     vector<Mat> singleChannelMaps {

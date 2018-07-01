@@ -50,12 +50,12 @@ int main(int argc, const char * argv[]) {
     const auto radius = 40;
     const auto hexSize = 10;
     const auto learningRate = 0.2;
-    const auto iterationsCount = 10000;
+    const auto epochs = 10000;
     
     SOM som(CPU);
     som.create(radius, hexSize, channels);
     som.prepare(data, MINMAX_BY_ROWS, RANDOM_FROM_DATA);
-    som.train(iterationsCount, learningRate, EUCLIDEAN);
+    som.train(epochs, learningRate, EUCLIDEAN);
     
     // Single channel maps
     Mat allChannels = drawSingleChannelMaps(som, ColormapConfiguration(COLORSCALE_JET));

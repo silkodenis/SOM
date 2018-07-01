@@ -39,7 +39,7 @@ int main(int argc, const char * argv[]) {
     const auto radius = 10;
     const auto hexSize = 15;
     const auto learningRate = 0.2;
-    const auto iterationsCount = 3000;
+    const auto epochs = 3000;
     const auto step = 10;
     const auto metric = SSD;
 
@@ -47,14 +47,14 @@ int main(int argc, const char * argv[]) {
     som.create(radius, hexSize, channels);
     som.prepare(data, NO_NORM, RANDOM_0_1);
     
-    som.train(iterationsCount, learningRate, metric, true);
+    som.train(epochs, learningRate, metric, true);
     
     vector<double> errors, diffs;
     
-    for (auto i = 0; i <= iterationsCount; i += step) {
+    for (auto i = 0; i <= epochs; i += step) {
         som.train(step);
         
-        Mat graph = drawGraph(som, i, step, iterationsCount, errors, diffs, 800, 600);
+        Mat graph = drawGraph(som, i, step, epochs, errors, diffs, 800, 600);
         
         imshow(TRAINING_PROCESS_WINDOW_NAME, graph);
         

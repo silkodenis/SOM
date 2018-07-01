@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
     const auto channels = trainingMat.channels();
     const auto hexSize = 11;
     const auto learningRate = 0.1;
-    const auto iterationsCount = 5000;
+    const auto epochs = 5000;
 
     // Create and training SOM
     SOM som(CPU);
@@ -46,7 +46,7 @@ int main(int argc, const char * argv[]) {
     /* cout << "Map error before training: " << som.computeError() << endl; */
 
     som.prepare(trainingMat.data, trainingMat.total() * channels);
-    som.train(iterationsCount, learningRate);
+    som.train(epochs, learningRate);
 
     /* cout << "Map error after training: " << som.computeError() << endl */
 
