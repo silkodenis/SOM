@@ -212,14 +212,14 @@ Distance metrics can be very importance in the data analyzing using SOM. At the 
 
 Definition:
 <p align="center">
-<img width="439" height="21" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/definition.png?raw=true">
+<img width="351" height="17" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/definition.png?raw=true">
 </p>
 
 **Euclidean:**
 
 It is the natural distance in a geometric interpretation and is classic for many solution.
 <p align="center">
-<img width="468" height="72" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/euclidean.png?raw=true">
+<img width="374" height="58" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/euclidean.png?raw=true">
 </p>
 
 
@@ -227,63 +227,63 @@ It is the natural distance in a geometric interpretation and is classic for many
 
 Is the generalized Lp-norm of the difference. Can be considered as a generalization of both the Euclidean distance the case of p=2 and the Manhattan distance the case of p=1. 
 <p align="center">
-<img width="340" height="68" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/minkowski.png?raw=true">  
+<img width="272" height="54" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/minkowski.png?raw=true">  
 </p>
 
 **Chebyshev:**
 
 Minkowski distance with limiting case of p reaching infinity.
 <p align="center">
-<img width="517" height="68" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/chebyshev.png?raw=true">
+<img width="414" height="54" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/chebyshev.png?raw=true">
 </p>
 
 **Manhattan(Taxicab):**
 
 Special case of the Minkowski distance with p=1 and equivalent to the sum of absolute difference. Also known as Taxicab norm, rectilinear distance or L1-norm. Used in regression analysis since the 18th century.
 <p align="center">
-<img width="288" height="55" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/manhattan.png?raw=true">
+<img width="230" height="44" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/manhattan.png?raw=true">
 </p>
 
 **Canberra:**
 
 It is a weighted version of Manhattan distance. Is often used for data scattered around an origin, as it is biased for measures around the origin and very sensitive for values close to zero.
 <p align="center">
-<img width="290" height="55" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/canberra.png?raw=true">
+<img width="232" height="44" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/canberra.png?raw=true">
 </p>
 
 **Cosine:**
 
 Represents the angular distance while ignoring space scale. Is most commonly used in high-dimensional positive spaces and also to measure cohesion within clusters in the field of data mining.
 <p align="center">
-<img width="331" height="112" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/cosine.png?raw=true">
+<img width="265" height="90" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/cosine.png?raw=true">
 </p>
 
 **Sum of Absolute Difference(SAD):**
 
 Is equivalent to the L1-norm of the difference, also known as Manhattan or Taxicab-norm. The abs function makes this metric a bit complicated, but it is more robust than SSD.
 <p align="center">
-<img width="241" height="55" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/SAD.png?raw=true">
+<img width="193" height="44" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/SAD.png?raw=true">
 </p>
 
 **Sum of Squared Difference(SSD):**
 
 Is equivalent to the squared L2-norm, also known as Euclidean norm. It is therefore also known as Squared Euclidean distance. Squares cause it to be very sensitive to large outliers. Is a standard approach in regression analysis.
 <p align="center">
-<img width="249" height="55" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/SSD.png?raw=true">
+<img width="199" height="44" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/SSD.png?raw=true">
 </p>
 
 **Mean-Absolute Error(MAE):**
 
 Is a normalized version SAD.
 <p align="center">
-<img width="265" height="55" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/MAE.png?raw=true">
+<img width="212" height="44" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/MAE.png?raw=true">
 </p>
 
 **Mean-Squared Error(MSE):**
 
 Is a normalized version SSD.
 <p align="center">
-<img width="275" height="55" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/MSE.png?raw=true">
+<img width="220" height="44" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/MSE.png?raw=true">
 </p>
 
 ## Pseudocolor Schemes
