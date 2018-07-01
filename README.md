@@ -156,6 +156,136 @@ A simple demonstration of saving and loading your model from a binary file.
 <img width="742" height="643" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/save%20and%20load/som.png?raw=true">
 </p>
 
+**Deep analysis**
+
+This example demonstrates various interpretations model view of a trained map using the additional library som_view.
+
+* Convolution maps, 3D(rgb) + 1D(v).
+
+<p align="center">
+<img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/convolution%203d%20+%201d.png?raw=true">
+</p>
+
+* Maps of accumulated distances during training.
+
+<p align="center">
+<img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/distances.png?raw=true">
+</p>
+
+* Maps from nodes that have been activated during training.
+
+<p align="center">
+<img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/actives%20only%203d%20+%201d.png?raw=true">
+</p>
+
+* Approximation maps. The temperature of the node indicates the frequency of activation during training.
+
+<p align="center">
+<img width="854" height="489" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/approximation%20gradient%20+%20hue.png?raw=true">
+</p>
+
+* Single channel maps. These maps show how the resulting clusters depend on the components of the vectors used in training.
+  
+<p align="center">  
+<img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
+</p>
+
+**Debugging training process**
+
+This example demonstrate dynamics of map error on the expiration of training epochs. It's important to timely stop training to avoid problem of overfitting. Observation of the convergence dynamics will help you to justify some learning parameters.
+
+<p align="center">
+<img width="800" height="600" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/training%20process/training_process.gif?raw=true">
+</p>
+
+**Save and load**
+
+A simple demonstration of saving and loading your model from a binary file.
+
+<p align="center">
+<img width="742" height="643" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/save%20and%20load/som.png?raw=true">
+</p>
+
+## Distance Metrics
+
+Distance metrics can be very importance in the data analyzing using SOM. At the core of learning algorithm is activation(by computing distances from nodes weights to input vector) of the Best Matching Unit. BMU in turn will affect change the weights of its neighbors. The library provides 10 most popular distance metrics:
+
+Definition:
+<p align="center">
+<img width="474" height="23" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/definition.png?raw=true">
+</p>
+
+**Euclidean:**
+
+It is the natural distance in a geometric interpretation and is classic for many solution.
+<p align="center">
+<img width="500" height="78" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/euclidean.png?raw=true">
+</p>
+
+
+**Minkowski:**
+
+Is the generalized Lp-norm of the difference. Can be considered as a generalization of both the Euclidean distance the case of p=2 and the Manhattan distance the case of p=1. 
+<p align="center">
+<img width="379" height="72" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/minkowski.png?raw=true">
+</p>
+
+**Chebyshev:**
+
+Minkowski distance with limiting case of p reaching infinity.
+<p align="center">
+<img width="552" height="74" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/chebyshev.png?raw=true">
+</p>
+
+**Manhattan(Taxicab):**
+
+Special case of the Minkowski distance with p=1 and equivalent to the sum of absolute difference. Also known as Taxicab norm, rectilinear distance or L1-norm. Used in regression analysis since the 18th century.
+<p align="center">
+<img width="308" height="60" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/manhattan.png?raw=true">
+</p>
+
+**Canberra:**
+
+It is a weighted version of Manhattan distance. Is often used for data scattered around an origin, as it is biased for measures around the origin and very sensitive for values close to zero.
+<p align="center">
+<img width="307" height="60" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/canberra.png?raw=true">
+</p>
+
+**Cosine:**
+
+Represents the angular distance while ignoring space scale. Is most commonly used in high-dimensional positive spaces and also to measure cohesion within clusters in the field of data mining.
+<p align="center">
+<img width="350" height="121" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/cosine.png?raw=true">
+</p>
+
+**Sum of Absolute Difference(SAD):**
+
+Is equivalent to the L1-norm of the difference, also known as Manhattan or Taxicab-norm. The abs function makes this metric a bit complicated, but it is more robust than SSD.
+<p align="center">
+<img width="260" height="60" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/SAD.png?raw=true">
+</p>
+
+**Sum of Squared Difference(SSD):**
+
+Is equivalent to the squared L2-norm, also known as Euclidean norm. It is therefore also known as Squared Euclidean distance. Squares cause it to be very sensitive to large outliers. Is a standard approach in regression analysis.
+<p align="center">
+<img width="270" height="60" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/SSD.png?raw=true">
+</p>
+
+**Mean-Absolute Error(MAE):**
+
+Is a normalized version SAD.
+<p align="center">
+<img width="287" height="60" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/MAE.png?raw=true">
+</p>
+
+**Mean-Squared Error(MSE):**
+
+Is a normalized version SSD.
+<p align="center">
+<img width="296" height="60" src="https://github.com/silkodenis/SOM/blob/readme_assets/distance%20metrics/MSE.png?raw=true">
+</p>
+
 ## Pseudocolor Schemes
 
 View has 20 most popular Matlab and Matplotlib equivalent colormaps.
