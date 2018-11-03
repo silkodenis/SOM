@@ -11,7 +11,7 @@ Dependencies:
 * `OpenCL 1.2 `  
 * `OpenCV 3` [optional] (for build view and examples)
 
-These steps have been tested for macOS High Sierra 10.13.14 but should work with other unix-based systems as well.
+These steps have been tested for macOS Mojave 10.14 but should work with other unix-based systems as well.
 
 ### Install
 
