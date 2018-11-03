@@ -40,7 +40,8 @@ src/computing/kernels/topological_distance_kernel.cpp
 src/computing/kernels/weight_distance_kernel.cpp)
 
 set(PUBLIC_HEADERS_LIB
-include/public/som_types.hpp
+include/public/version.hpp
+include/public/types.hpp
 include/public/som.hpp)
 
 set(PRIVATE_HEADERS_LIB
@@ -69,7 +70,8 @@ include/private/computing/kernels/weight_distance_kernel.hpp)
 if(NOT CMAKE_GENERATOR STREQUAL Xcode)
 	set(PUBLIC_HEADERS_LIB
 	include/public/som.hpp
-	include/public/som_types.hpp)
+	include/public/types.hpp
+    include/public/version.hpp)
 	file(COPY ${PUBLIC_HEADERS_LIB} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/include)
 endif()
 

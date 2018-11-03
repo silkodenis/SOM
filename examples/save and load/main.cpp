@@ -11,7 +11,7 @@
 */
 
 #include "som.hpp"
-#include "som_cv_view.hpp"
+#include "cv_view.hpp"
 
 using namespace cv;
 using namespace som;

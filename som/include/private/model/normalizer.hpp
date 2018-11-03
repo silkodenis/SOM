@@ -13,7 +13,7 @@
 #ifndef normalizer_hpp
 #define normalizer_hpp
 
-#include "som_types.hpp"
+#include "types.hpp"
 #include <vector>
 #include <fstream>
 #include <math.h>

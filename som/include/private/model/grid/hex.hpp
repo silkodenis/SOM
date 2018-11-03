@@ -13,7 +13,7 @@
 #ifndef hex_hpp
 #define hex_hpp
 
-#include "som_types.hpp"
+#include "types.hpp"
 
 using namespace som;
 

@@ -11,11 +11,11 @@ include_directories(include)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 set(SOURCE_LIB 
-src/som_cv_view.cpp
+src/cv_view.cpp
 src/pseudocolor_schemes.cpp)
 
 set(HEADERS_LIB 
-include/som_cv_view.hpp
+include/cv_view.hpp
 include/pseudocolor_schemes.hpp)
 
 if(NOT CMAKE_GENERATOR STREQUAL Xcode)

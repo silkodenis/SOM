@@ -13,6 +13,8 @@ Dependencies:
 
 These steps have been tested for macOS High Sierra 10.13.14 but should work with other unix-based systems as well.
 
+### Install
+
 ```sh
 1. $ cd ~/<my_working_directory>
 2. $ git clone https://github.com/silkodenis/SOM.git
@@ -23,7 +25,7 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 
 ```sh
 ## to build som, view and examples
-6. $ cmake -D CMAKE_INSTALL_PREFIX=/usr/local ../
+6. $ cmake -D CMAKE_INSTALL_PREFIX=/usr/local ..
 
 ## to build only lib som
 6. $ cmake -D CMAKE_INSTALL_PREFIX=/usr/local ../som
@@ -35,15 +37,21 @@ These steps have been tested for macOS High Sierra 10.13.14 but should work with
 9. $ sudo make install
 ```
 
+### Uninstall
+
+```sh
+9. $ sudo make uninstall
+```
+
 ### Notes
 ```sh
 ## to generate XCode projects use:
-6. $ cmake -G Xcode ../
+6. $ cmake -G Xcode ..
 ```
 
 ```sh
 ## to build dynamic libs, use option: [-D BUILD_SHARED_LIBS=true], for example:
-6. $ cmake -D BUILD_SHARED_LIBS=true -D CMAKE_INSTALL_PREFIX=/usr/local ../
+6. $ cmake -D BUILD_SHARED_LIBS=true -D CMAKE_INSTALL_PREFIX=/usr/local ..
 ```
 
 ## Examples

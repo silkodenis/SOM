@@ -13,7 +13,7 @@
 #ifndef computing_hpp
 #define computing_hpp
 
-#include "som_types.hpp"
+#include "types.hpp"
 
 namespace som {
     

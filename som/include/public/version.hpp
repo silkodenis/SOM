@@ -10,21 +10,20 @@
  limitations under the License.
  */
 
-#ifndef minkowski_distance_kernel_hpp
-#define minkowski_distance_kernel_hpp
+#ifndef version_h
+#define version_h
 
-#include "weight_distance_kernel.hpp"
-#include "types.hpp"
+#define SOM_VERSION_MAJOR    1
+#define SOM_VERSION_MINOR    0
+#define SOM_VERSION_REVISION 0
+#define SOM_VERSION_STATUS   ""
 
-namespace som {
-    
-    class MinkowskiDistanceKernel : public WeightDistanceKernel {
-        
-    public:
-        MinkowskiDistanceKernel(cl_context &context, cl_command_queue &commandQueue, cl_device_id &deviceId, Device);
-        
-    };
-    
-}
+#define SOMAUX_STR_EXP(__A)  #__A
+#define SOMAUX_STR(__A)      SOMAUX_STR_EXP(__A)
 
-#endif /* minkowski_distance_kernel_hpp */
+#define SOMAUX_STRW_EXP(__A)  L ## #__A
+#define SOMAUX_STRW(__A)      SOMAUX_STRW_EXP(__A)
+
+#define SOM_VERSION          SOMAUX_STR(SOM_VERSION_MAJOR) "." SOMAUX_STR(SOM_VERSION_MINOR) "." SOMAUX_STR(SOM_VERSION_REVISION) SOM_VERSION_STATUS
+
+#endif /* version_h */

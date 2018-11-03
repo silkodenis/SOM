@@ -10,13 +10,14 @@
  limitations under the License.
 */
 
-#ifndef som_types_hpp
-#define som_types_hpp
+#ifndef types_hpp
+#define types_hpp
 
 #include <iostream>
 #include <vector>
 
 #define CL_USE_DEPRECATED_OPENCL_1_2_APIS
+#define CL_SILENCE_DEPRECATION
 
 #ifdef __APPLE__
 #include <OpenCL/OpenCL.h>
@@ -63,4 +64,4 @@ namespace som {
     
 }
 
-#endif /* som_types_hpp */
+#endif /* types_hpp */

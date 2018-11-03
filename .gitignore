@@ -1,5 +1,6 @@
 .DS_Store
 /build/
+/project/
 cmake_build/
 
 # Prerequisites

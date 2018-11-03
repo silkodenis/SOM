@@ -10,8 +10,8 @@
  limitations under the License.
  */
 
-#include "som_cv_view.hpp"
-#include "som_types.hpp"
+#include "cv_view.hpp"
+#include "types.hpp"
 #include <assert.h>
 #include <float.h>
 #include <iomanip>

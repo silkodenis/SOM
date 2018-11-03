@@ -17,7 +17,7 @@
 #include <vector>
 #include <math.h>
 #include "hex.hpp"
-#include "som_types.hpp"
+#include "types.hpp"
 
 namespace som {
 
