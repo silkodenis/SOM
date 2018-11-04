@@ -17,7 +17,7 @@ These steps have been tested for macOS Mojave 10.14 but should work with other u
 
 ```sh
 1. $ cd ~/<my_working_directory>
-2. $ git clone https://github.com/silkodenis/SOM.git
+2. $ git clone --branch v1.0 https://github.com/silkodenis/SOM.git
 3. $ cd SOM
 4. $ mkdir build
 5. $ cd build
