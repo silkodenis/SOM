@@ -10,8 +10,8 @@
  limitations under the License.
  */
 
-#ifndef cv_view_hpp
-#define cv_view_hpp
+#ifndef som_cv_view_hpp
+#define som_cv_view_hpp
 
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
@@ -86,4 +86,4 @@ namespace som {
                                         const DisplayConfiguration = DisplayConfiguration());
 }
 
-#endif /* cv_view_hpp */
+#endif /* som_cv_view_hpp */

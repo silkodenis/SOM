@@ -12,7 +12,7 @@ include_directories(../../som/include/public)
 
 set(SOURCE_EXE main.cpp)
 
-add_executable(regression ${SOURCE_EXE})
+add_executable(data_approximation ${SOURCE_EXE})
 
-target_link_libraries(regression ${OpenCL_LIBRARY})
-target_link_libraries(regression som_view)	
+target_link_libraries(data_approximation ${OpenCL_LIBRARY})
+target_link_libraries(data_approximation som_view)	

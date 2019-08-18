@@ -4,7 +4,7 @@ project(examples)
 
 add_subdirectory(image\ as\ dataset)
 add_subdirectory(real-time\ training)
-add_subdirectory(regression)
+add_subdirectory(data\ approximation)
 add_subdirectory(save\ and\ load)
 add_subdirectory(simple\ training)
 add_subdirectory(single\ channel\ analysis)

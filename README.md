@@ -75,9 +75,9 @@ A simple example of how to training SOM and get a model view in real time.
 <img width="568" height="649" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/real-time%20training/training_proccess.gif?raw=true">
 </p>
 
-**Regression**
+**Data approximation**
 
-A simple example of using SOM for regression analysis.
+A simple example of using one-dimensional SOM for data approximation.
 
 <p align="center">
 <img width="650" height="650" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/regression/training_process.gif?raw=true">
@@ -116,7 +116,7 @@ A simple example of analyzing the channels of a trained map.
 
 **Deep analysis**
 
-This example demonstrates various interpretations model view of a trained map using the additional library som_view.
+This example demonstrates various model view interpretations of a trained map.
 
 * Convolution maps, 3D(rgb) + 1D(v).
 
@@ -148,7 +148,7 @@ This example demonstrates various interpretations model view of a trained map us
 <img width="600" height="571" src="https://github.com/silkodenis/SOM/blob/readme_assets/examples/deep%20analysis/channels.png?raw=true">
 </p>
 
-**Debugging training process**
+**Debug training process**
 
 This example demonstrate dynamics of map error on the expiration of training epochs. It's important to timely stop training to avoid problem of overfitting. Observation of the convergence dynamics will help you to justify some learning parameters.
 
@@ -265,7 +265,7 @@ The colormap have three parameters for adjustment (inversion, colors quantizatio
 
 ## Credits
 
-Thanks to [Amit Patel](http://www-cs-students.stanford.edu/~amitp/) for help in implementing the efficient hexagon grid.
+Thanks to [Amit Patel](http://www-cs-students.stanford.edu/~amitp/) for help in implementing the efficient hexagonal grid.
 
 ## License
 

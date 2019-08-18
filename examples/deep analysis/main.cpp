@@ -13,7 +13,7 @@
 #include <random>
 #include <chrono>
 #include "som.hpp"
-#include "cv_view.hpp"
+#include "som_cv_view.hpp"
 
 using namespace cv;
 using namespace som;
